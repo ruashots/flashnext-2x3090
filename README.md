@@ -8,11 +8,11 @@ Turns out, it runs.
 
 |                          |            Result |
 | ------------------------ | ----------------: |
-| UD-IQ4_XS decode         |         ~33 tok/s |
-| UD-Q2_K_XL decode        |   up to ~43 tok/s |
-| Prefill                  |  up to ~845 tok/s |
-| Stable tested context    |               32k |
-| Longest prompt completed |     65,682 tokens |
+| UD-IQ4_XS decode         |       ~38-40 tok/s |
+| UD-Q2_K_XL decode        |   up to ~53 tok/s |
+| Prefill                  |  up to ~892 tok/s |
+| Stable tested context    |              128k |
+| Longest prompt completed |    119,482 tokens |
 | Retrieval test           |       90/90 exact |
 | GPUs                     | 2x RTX 3090 24 GB |
 | RAM                      |             64 GB |
@@ -21,57 +21,13 @@ The main trick is not the quant. It is where the model lives.
 
 The 28.8 GB n-gram table can stay on the CPU and be memory-mapped from NVMe, while the routed experts are split across the GPUs and host RAM in a way that does not leave half of one 3090 sitting empty.
 
-The result is about 33 tok/s with UD-IQ4_XS and up to 43 tok/s with UD-Q2_K_XL. It stays stable through 32k context on the configurations tested here, and a separate 64k setup completed a 65,682-token prompt at about 22 tok/s.
+The result is about 38 to 40 tok/s with UD-IQ4_XS and up to 53 tok/s with UD-Q2_K_XL. It stays stable through 32k context, and a separate long-context setup completed a 119,482-token prompt.
 
-It is also much slower than Qwen3.8-27B on the same machine. The 27B sits entirely in VRAM and runs around 80 to 100 tok/s here. I tried to measure whether Flash-Next gives enough quality back to justify that gap, but the test was too small to answer it. The speed numbers are solid. The quality comparison is not.
+It is still slower than Qwen3.8-27B on the same machine. The 27B sits entirely in VRAM and runs around 85 to 100 tok/s here. I tried to measure whether Flash-Next gives enough quality back to justify that gap, but the test was too small to answer it. The speed numbers are solid. The quality comparison is not.
+
+I first measured all of this against the pull request branch, the day before support merged. After it landed in master I rebuilt and reran everything, and the numbers here are from master. What the earlier build looked like, and what changed, is at the end.
 
 Everything in this repo was measured on the machine below. The benchmark scripts, raw results and server logs are included.
-
-## Update: retested on master
-
-The numbers below were measured against the PR branch at commit `6c5afc8`.
-[#27742](https://github.com/ggml-org/llama.cpp/pull/27742) merged into llama.cpp
-master a few hours later, so I rebuilt from master and reran it. Same box, same
-GGUF, same config, only the build changed.
-
-**Decode got faster.**
-
-| prompt | PR branch | master |
-| ------ | --------: | -----: |
-| ~125 tok | 32.9 | **39.5** |
-| ~4.2k | 32.9 | **38.4** |
-| ~16.5k | 30.6 | **32.1** |
-
-**The OOM is gone.** The 32k config below crashed at 17,849 tokens on the PR
-branch. On master it handled 18,028, 22,076, 25,908 and 30,162, at 683 to 753
-tok/s prefill. It now uses its whole window.
-
-**The context ceiling nearly doubled.** Long bands, `-ub 1024`, launched at
-131,072:
-
-| prompt tokens | result | prefill |
-| ------------: | ------ | ------: |
-| 39,893 | ok | 398 tok/s |
-| 65,165 | ok | 429 tok/s |
-| 89,786 | ok | 411 tok/s |
-| **119,482** | **ok** | 378 tok/s |
-
-Best on the PR branch was 65,682. Decode on that config is 35.8 tok/s at short
-prompts and 21.9 at 64k, with prefill at 64k up from 359 to 413.
-
-**Two flags worth knowing about.** `--n-cpu-ffn` does not work here, it will not
-even load. llama.cpp's own help says why: it keeps *dense* FFN weights on the
-CPU and points you at `--n-cpu-moe` for expert weights. Every layer in this
-model is MoE, so it moves nothing. `--tensor-read-lazy on` cuts load time from
-45 seconds to 20 and changes nothing else.
-
-**One number I am not reporting.** Prefill at 16k measured 505 tok/s on master
-against 694 on the PR branch, while a separate measurement on the same build
-read 752 at 26k. Those disagree and I have one run of each, so I am not claiming
-a prefill change in either direction.
-
-Everything from here down is the original write-up against `6c5afc8`, left as
-measured.
 
 ## Hardware
 
@@ -86,7 +42,7 @@ measured.
 | Model disk        | ADATA XPG S40G NVMe, PCIe Gen3 x4                                      |
 | Driver            | 595.71.05                                                              |
 | CUDA              | 13.0.88                                                                |
-| llama.cpp         | `unslothai/llama.cpp`, `qwen4exp/qwen3.8-flash-next`, commit `6c5afc8` |
+| llama.cpp         | upstream `master`, after [#27742](https://github.com/ggml-org/llama.cpp/pull/27742) merged |
 | Model             | `unsloth/Qwen3.8-Flash-Next-GGUF`, UD-IQ4_XS                           |
 
 ## Working 32k configuration
@@ -158,6 +114,10 @@ It was not a small difference either. With `--n-cpu-moe 32`, NVMe reads went as 
 
 `-ts` can also improve the balance, but it steers more than just the expert placement, and the layers are not equal in size anyway. I had better results naming the tensors directly.
 
+`--n-cpu-ffn` was suggested to me as an alternative and it does not work here, it will not even load. llama.cpp's own help says why: it keeps *dense* FFN weights on the CPU and points you at `--n-cpu-moe` for expert weights. Every layer in this model is MoE, so it has nothing to move.
+
+`--tensor-read-lazy on` is worth having. It cut load time from 45 seconds to 20 and changed nothing else.
+
 ## Speed
 
 These runs use 512 output tokens, a unique nonce on every request so prefix caching cannot help, and two 512-token generations before recording anything so the CPU expert pages are warm.
@@ -168,18 +128,18 @@ The 27B comparison is the same machine, prompts and harness, but runs in vLLM wi
 
 | Model                                      | ~125 tok |    ~4.2k |   ~16.5k |
 | ------------------------------------------ | -------: | -------: | -------: |
-| Flash-Next UD-IQ4_XS, 16 host layers       |     32.9 |     32.9 |     30.6 |
-| Flash-Next UD-Q2_K_XL, same 16 host layers |     36.9 |     37.0 |     34.7 |
-| Flash-Next UD-Q2_K_XL, 8 host layers       | **43.2** | **43.3** | **38.7** |
+| Flash-Next UD-IQ4_XS, 16 host layers       |     39.5 |     38.0 |     33.1 |
+| Flash-Next UD-Q2_K_XL, same 16 host layers |     46.8 |     44.5 |     37.8 |
+| Flash-Next UD-Q2_K_XL, 8 host layers       | **53.3** | **50.8** | **42.1** |
 | Qwen3.8-27B W4A16-AWQ, vLLM                |     96.2 |     99.4 |     84.7 |
 
 ### Prefill
 
 | Model                                      |   ~4.2k |  ~16.5k |
 | ------------------------------------------ | ------: | ------: |
-| Flash-Next UD-IQ4_XS, 16 host layers       |     650 |     694 |
-| Flash-Next UD-Q2_K_XL, same 16 host layers |     714 |     742 |
-| Flash-Next UD-Q2_K_XL, 8 host layers       | **845** | **833** |
+| Flash-Next UD-IQ4_XS, 16 host layers       |     615 |     725 |
+| Flash-Next UD-Q2_K_XL, same 16 host layers |     676 |     778 |
+| Flash-Next UD-Q2_K_XL, 8 host layers       | **816** | **892** |
 | Qwen3.8-27B W4A16-AWQ, vLLM                |    1560 |    1497 |
 
 The Q2 build gets two rows because running both quants with the same CPU offload would not be a useful comparison.
@@ -188,20 +148,22 @@ UD-IQ4_XS has 55.43 GiB of routed experts. UD-Q2_K_XL has 42.92 GiB. The smaller
 
 Leaving it on the sixteen-layer split wastes about 8 GiB of VRAM and makes the CPU do eight extra expert passes per token for no reason.
 
-## 64k
+## Long context
 
-64k needs a different setup.
+Long prompts need a different setup. The 32k configuration does not leave enough VRAM for the buffers built while processing something that large, so I moved 22 expert layers to the CPU and dropped `-ub` from 2048 to 1024, then launched at `-c 131072`.
 
-The 32k configuration does not leave enough VRAM for the compute buffers created while processing a prompt that large, so I moved 22 expert layers to the CPU and dropped `-ub` from 2048 to 1024.
+That loads at 21.8 and 22.5 GB across the two cards. Walking the prompt length up:
 
-| Model                                            |             Decode |          Prefill |  TTFT |
-| ------------------------------------------------ | -----------------: | ---------------: | ----: |
-| Flash-Next UD-IQ4_XS, 22 host layers, `-ub 1024` | 21.7 to 22.1 tok/s | 359 to 360 tok/s | 182 s |
-| Qwen3.8-27B W4A16-AWQ, vLLM                      |         82.4 tok/s |       1225 tok/s |  54 s |
+| Prompt tokens |     Result | Prefill |
+| ------------: | ---------: | ------: |
+|        39,893 |         ok | 398 tok/s |
+|        65,165 |         ok | 429 tok/s |
+|        89,786 |         ok | 411 tok/s |
+|   **119,482** |     **ok** | 378 tok/s |
 
-A 65,682-token prompt completed.
+Decode on that configuration is 35.8 tok/s at short prompts and 21.9 tok/s at 64k, with prefill at 64k of 413.
 
-Three earlier configurations crashed before that, which is where one of the more useful findings from this test came from.
+For comparison, the 27B on vLLM does 82.4 tok/s decode and 1225 tok/s prefill at 64k, with 54 seconds to first token against about 160 here.
 
 ## A configuration can load fine and still OOM later
 
@@ -209,7 +171,7 @@ The compute buffer grows with the prompt actually being processed.
 
 That matters because a configuration can load, answer short prompts and look completely stable, then die halfway through a long one.
 
-These were three of the failures:
+**This is much better on master than it was when I started.** These three failures are from the pull request branch, before the merge. On master the first of them runs its whole 32k window without complaint. I am keeping them because the lesson holds and because it is why the long-context setup above looks the way it does:
 
 | Expert bands  | ubatch |       Died at | Allocation requested |
 | ------------- | -----: | ------------: | -------------------: |
@@ -228,6 +190,8 @@ The working configurations here leave roughly another 1 GiB per card instead of 
 ## 32k retrieval
 
 I also wanted to make sure "32k works" meant more than "the server did not crash."
+
+This one was run on the pull request branch and I have not repeated it on master. Sparse attention did not change in the merge, so I expect it still holds, but it is the one measurement here that is not from the current build.
 
 The retrieval test uses five maintenance records inside the same prompt. Each one gets a different sensor name and random 8-digit value, and they are placed at five different depths. The model is then asked for one by name.
 
@@ -284,7 +248,7 @@ So the selection path is being built and executed. I am not inferring it from sp
 
 A single prefill tok/s number is not very useful here because there is a fixed request cost and then a growing long-context cost on top.
 
-On the 22-host-layer, `-ub 1024` configuration:
+These five points are from the pull request branch. Master is faster across the board, so read the shape rather than the values. On the 22-host-layer, `-ub 1024` configuration:
 
 | Prompt tokens |     Prefill | Wall time |
 | ------------: | ----------: | --------: |
@@ -311,7 +275,7 @@ Q2 is faster on this hardware because its expert pool is smaller.
 | UD-IQ4_XS  |      55.43 GiB |
 | UD-Q2_K_XL |      42.92 GiB |
 
-That lets Q2 keep eight more expert layers on the GPUs.
+That lets Q2 keep eight more expert layers on the GPUs, and it is worth about 14 tok/s: 53.3 against 39.5 at short prompts.
 
 There is a quality tradeoff I did not measure well enough to quantify. UD-Q2_K_XL is the first tier here that starts reducing the attention projections. They are Q8_0 in UD-IQ4_XS and UD-Q3_K_XL, while 59 of 84 are Q5_K in UD-Q2_K_XL.
 
@@ -472,11 +436,28 @@ If I wanted a strong local model mostly for conversation, I would have no proble
 
 More VRAM is the obvious one. Every expert layer moved back to the GPU removes CPU compute, transfer and synchronisation from every token. Published results with all of the experts resident are much faster.
 
-The llama.cpp support was about a day old when I ran this, and it moved the same evening. See the update at the top: rebuilding from master gave about 20 percent more decode, removed the OOM, and took the longest prompt from 65,682 to 119,482 tokens.
-
-One OOM path still ends in a segfault rather than an error, because a graph allocation failure is not checked where it should be. Filed as [#27817](https://github.com/ggml-org/llama.cpp/issues/27817).
+The llama.cpp support is still very new. It merged the day I was testing and got about 20 percent faster in the process, which is not a curve that has flattened yet.
 
 There is also a graph-reuse patch showing large gains when all experts are resident on GPU. With CPU-offloaded experts, its author measured only about a 3.3 percent improvement. My own run-to-run spread is as high as 8 percent, so I did not bother publishing a number for something this harness could not resolve.
+
+
+## What the day-one build looked like
+
+I measured everything first against the pull request branch at commit `6c5afc8`, the day before [#27742](https://github.com/ggml-org/llama.cpp/pull/27742) merged. Then it merged, I rebuilt from master, and reran it. Same box, same GGUF, same configs.
+
+| decode, tok/s | day one | master |
+| ------------- | ------: | -----: |
+| UD-IQ4_XS, ~125 tok | 32.9 | **39.5** |
+| UD-IQ4_XS, ~4.2k | 32.9 | **38.0** |
+| UD-IQ4_XS, ~16.5k | 30.6 | **33.1** |
+| UD-Q2_K_XL 8 host layers, ~125 tok | 43.2 | **53.3** |
+| UD-Q2_K_XL 8 host layers, ~16.5k | 38.7 | **42.1** |
+
+Two other things changed. The 32k configuration used to segfault at 17,849 tokens and now runs its whole window. And the longest prompt I could complete went from 65,682 tokens to 119,482.
+
+Load time also dropped from 115 seconds to 45, and to 20 with `--tensor-read-lazy on`.
+
+One OOM path still ends in a segfault rather than a handled error, because a graph allocation failure is not checked where it should be. Filed as [#27817](https://github.com/ggml-org/llama.cpp/issues/27817).
 
 ## Reproducing it
 
