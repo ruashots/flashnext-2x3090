@@ -1,0 +1,63 @@
+=== 2026-08-26T23:28:22-06:00 CUDA toolkit install ===
+Cuda compilation tools, release 13.0, V13.0.88
+Build cuda_13.0.r13.0/compiler.36424714_0
+=== 2026-08-26T23:29:54-06:00 clone llama.cpp PR branch ===
+Cloning into 'llama.cpp'...
+commit 6c5afc86ae84448ae4d744e357017e2c490ad9c3
+Thu Aug 27 03:47:07 2026 +0000
+qwen4exp: double the Q split granularity for tensor parallelism
+=== 2026-08-26T23:35:02-06:00 cmake configure ===
+-- Including CUDA backend
+-- ggml version: 0.22.0
+-- ggml commit:  6c5afc8
+-- Could NOT find OpenSSL, try to set the path to OpenSSL root folder in the system variable OPENSSL_ROOT_DIR (missing: OPENSSL_CRYPTO_LIBRARY OPENSSL_INCLUDE_DIR) 
+CMake Warning at vendor/cpp-httplib/CMakeLists.txt:154 (message):
+  OpenSSL not found, HTTPS support disabled
+
+
+-- Generating embedded license file for target: llama-app
+-- Configuring done (1.3s)
+-- Generating done (0.1s)
+-- Build files have been written to: /opt/llama.cpp/build
+=== 2026-08-26T23:35:03-06:00 build ===
+[ 98%] Building CXX object tools/cli/CMakeFiles/llama-cli-impl.dir/cli-context.cpp.o
+[ 98%] Linking CXX shared library ../../bin/libllama-cli-impl.so
+[ 98%] Built target llama-cli-impl
+[ 98%] Building CXX object tools/cli/CMakeFiles/llama-cli.dir/main.cpp.o
+[100%] Linking CXX executable ../../bin/llama-cli
+[100%] Built target llama-cli
+[  1%] Built target llama-common-base
+[  1%] Built target cpp-httplib
+[  5%] Built target ggml-base
+[  8%] Built target ggml-cpu
+[ 44%] Built target ggml-cuda
+[ 44%] Built target ggml
+[ 91%] Built target llama
+[100%] Built target llama-common
+[100%] Building CXX object tools/llama-bench/CMakeFiles/llama-bench-impl.dir/llama-bench.cpp.o
+[100%] Linking CXX shared library ../../bin/libllama-bench-impl.so
+[100%] Built target llama-bench-impl
+[100%] Building CXX object tools/llama-bench/CMakeFiles/llama-bench.dir/main.cpp.o
+[100%] Linking CXX executable ../../bin/llama-bench
+[100%] Built target llama-bench
+=== 2026-08-26T23:38:11-06:00 build done ===
+total 85848
+drwxr-xr-x  2 root root     4096 Aug 26 23:38 .
+drwxr-xr-x 14 root root     4096 Aug 26 23:35 ..
+lrwxrwxrwx  1 root root       17 Aug 26 23:35 libggml-base.so -> libggml-base.so.0
+lrwxrwxrwx  1 root root       22 Aug 26 23:35 libggml-base.so.0 -> libggml-base.so.0.22.0
+-rwxr-xr-x  1 root root   939528 Aug 26 23:35 libggml-base.so.0.22.0
+lrwxrwxrwx  1 root root       16 Aug 26 23:35 libggml-cpu.so -> libggml-cpu.so.0
+lrwxrwxrwx  1 root root       21 Aug 26 23:35 libggml-cpu.so.0 -> libggml-cpu.so.0.22.0
+-rwxr-xr-x  1 root root  1366776 Aug 26 23:35 libggml-cpu.so.0.22.0
+lrwxrwxrwx  1 root root       17 Aug 26 23:37 libggml-cuda.so -> libggml-cuda.so.0
+lrwxrwxrwx  1 root root       22 Aug 26 23:37 libggml-cuda.so.0 -> libggml-cuda.so.0.22.0
+-rwxr-xr-x  1 root root 64378008 Aug 26 23:37 libggml-cuda.so.0.22.0
+lrwxrwxrwx  1 root root       12 Aug 26 23:37 libggml.so -> libggml.so.0
+lrwxrwxrwx  1 root root       17 Aug 26 23:37 libggml.so.0 -> libggml.so.0.22.0
+-rwxr-xr-x  1 root root    56016 Aug 26 23:37 libggml.so.0.22.0
+-rwxr-xr-x  1 root root   472200 Aug 26 23:38 libllama-bench-impl.so
+-rwxr-xr-x  1 root root   243152 Aug 26 23:38 libllama-cli-impl.so
+lrwxrwxrwx  1 root root       20 Aug 26 23:37 libllama-common.so -> libllama-common.so.0
+lrwxrwxrwx  1 root root       24 Aug 26 23:37 libllama-common.so.0 -> libllama-common.so.0.3.0
+-rwxr-xr-x  1 root root  5742184 Aug 26 23:37 libllama-common.so.0.3.0

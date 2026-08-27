@@ -1,0 +1,36 @@
+==================== IQ4XS-rungB-ub2048  ub=2048 ====================
+### IQ4XS-rungB-ub2048 band=blk\.([0-8]|2[5-9]|3[0-2])\.ffn_(up|down|gate|gate_up)_(ch|)exps ctx=32768 quant=UD-IQ4_XS 2026-08-27T00:06:59-06:00
+HEALTHY after 115s
+0, 23310 MiB
+1, 21882 MiB
+RAM used 715 MB, cache 53583 MB, avail 53556 MB
+1.28.267.410 I load_tensors:   CPU_Mapped model buffer size = 40048.08 MiB
+1.28.267.411 I load_tensors:   CPU_Mapped model buffer size = 10078.82 MiB
+1.28.267.411 I load_tensors:        CUDA0 model buffer size = 20277.75 MiB
+1.28.267.411 I load_tensors:        CUDA1 model buffer size = 20244.38 MiB
+1.46.364.977 I operator(): creating indexer KV cache, size = 32768 cells
+{"ttft_s": 1.228, "total_s": 11.8303, "prompt_tokens": 123, "completion_tokens": 256, "decode_tps": 24.15, "wall_tps": 21.64, "prefill_tps": 100.2, "chars": 1126, "label": "IQ4XS-rungB-ub2048", "model": "x", "ctx_target": 0, "task": "code", "run": 0, "ts": "2026-08-27T00:09:17-0600"}
+{"ttft_s": 1.3754, "total_s": 10.1324, "prompt_tokens": 125, "completion_tokens": 256, "decode_tps": 29.23, "wall_tps": 25.27, "prefill_tps": 90.9, "chars": 1169, "label": "IQ4XS-rungB-ub2048", "model": "x", "ctx_target": 0, "task": "code", "run": 1, "ts": "2026-08-27T00:09:27-0600"}
+  >> IQ4XS-rungB-ub2048 ctx~0 code: decode median 26.689999999999998 tok/s, prefill median 95.55000000000001 tok/s
+{"ttft_s": 6.7759, "total_s": 15.4003, "prompt_tokens": 4226, "completion_tokens": 256, "decode_tps": 29.68, "wall_tps": 16.62, "prefill_tps": 623.7, "chars": 1175, "label": "IQ4XS-rungB-ub2048", "model": "x", "ctx_target": 4000, "task": "code", "run": 0, "ts": "2026-08-27T00:09:55-0600"}
+{"ttft_s": 6.7171, "total_s": 14.9572, "prompt_tokens": 4228, "completion_tokens": 256, "decode_tps": 31.07, "wall_tps": 17.12, "prefill_tps": 629.4, "chars": 1216, "label": "IQ4XS-rungB-ub2048", "model": "x", "ctx_target": 4000, "task": "code", "run": 1, "ts": "2026-08-27T00:10:10-0600"}
+  >> IQ4XS-rungB-ub2048 ctx~4000 code: decode median 30.375 tok/s, prefill median 626.55 tok/s
+{"ttft_s": 24.4169, "total_s": 33.2873, "prompt_tokens": 16528, "completion_tokens": 256, "decode_tps": 28.86, "wall_tps": 7.69, "prefill_tps": 676.9, "chars": 1200, "label": "IQ4XS-rungB-ub2048", "model": "x", "ctx_target": 16000, "task": "code", "run": 0, "ts": "2026-08-27T00:11:12-0600"}
+{"ttft_s": 24.4781, "total_s": 33.6991, "prompt_tokens": 16525, "completion_tokens": 256, "decode_tps": 27.76, "wall_tps": 7.6, "prefill_tps": 675.1, "chars": 1066, "label": "IQ4XS-rungB-ub2048", "model": "x", "ctx_target": 16000, "task": "code", "run": 1, "ts": "2026-08-27T00:11:45-0600"}
+  >> IQ4XS-rungB-ub2048 ctx~16000 code: decode median 28.310000000000002 tok/s, prefill median 676.0 tok/s
+  mean nvme 88 MB/s, gpu util 44%/24%
+==================== IQ4XS-rungC-ub2048  ub=2048 ====================
+### IQ4XS-rungC-ub2048 band=blk\.([0-7]|2[5-9]|3[01])\.ffn_(up|down|gate|gate_up)_(ch|)exps ctx=32768 quant=UD-IQ4_XS 2026-08-27T00:11:49-06:00
+SERVER DIED
+1.37.622.519 E ggml_backend_cuda_buffer_type_alloc_buffer: allocating 2138.00 MiB on device 0: cudaMalloc failed: out of memory
+1.37.622.523 E ggml_gallocr_reserve_n_impl: failed to allocate CUDA0 buffer of size 2241856640
+1.37.622.523 E graph_reserve: failed to allocate compute buffers
+1.37.631.079 E llama_init_from_model: failed to initialize the context: failed to allocate compute pp buffers
+1.37.631.402 E cmn  common_init_: failed to create context with model '/mnt/models/flashnext/UD-IQ4_XS/Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf'
+1.37.631.405 E cmn  common_init_: failed to create context with model '/mnt/models/flashnext/UD-IQ4_XS/Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf'
+1.37.632.060 E srv    load_model: failed to create_context with model '/mnt/models/flashnext/UD-IQ4_XS/Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf'
+1.37.633.388 E srv  llama_server: exiting due to model loading error
+IQ4XS-rungC-ub2048 ub=2048 DID NOT LOAD
+==================== IQ4XS-rungD-ub2048  ub=2048 ====================
+### IQ4XS-rungD-ub2048 band=blk\.([0-6]|2[5-9]|30)\.ffn_(up|down|gate|gate_up)_(ch|)exps ctx=32768 quant=UD-IQ4_XS 2026-08-27T00:13:34-06:00
+SERVER DIED

@@ -1,0 +1,38 @@
+
+############ long pass, bands 0-11+25-34, ub 1024, ctx 73728 :: 2026-08-27T01:29:41-06:00
+### FINAL-E-0-11+25-34 band=blk\.([0-9]|1[01]|2[5-9]|3[0-4])\.ffn_(up|down|gate|gate_up)_(ch|)exps ctx=73728 quant=UD-IQ4_XS 2026-08-27T01:29:45-06:00
+HEALTHY after 115s
+0, 20418 MiB
+1, 19972 MiB
+RAM used 692 MB, cache 52481 MB, avail 53579 MB
+1.38.297.601 I load_tensors:   CPU_Mapped model buffer size = 43718.14 MiB
+1.38.297.602 I load_tensors:   CPU_Mapped model buffer size = 12520.21 MiB
+1.38.297.602 I load_tensors:        CUDA0 model buffer size = 16865.25 MiB
+1.38.297.603 I load_tensors:        CUDA1 model buffer size = 17969.38 MiB
+1.47.278.491 I operator(): creating indexer KV cache, size = 73728 cells
+
+############ E: speed at 64k :: 2026-08-27T01:31:35-06:00
+{"ttft_s": 182.3637, "total_s": 207.3302, "prompt_tokens": 65725, "completion_tokens": 512, "decode_tps": 20.51, "wall_tps": 2.47, "prefill_tps": 360.4, "chars": 2158, "label": "FlashNext UD-IQ4_XS long bands 0-11+25-34 ub1024 ctx72k", "model": "x", "ctx_target": 64000, "task": "code", "run": 0, "ts": "2026-08-27T01:39:37-0600"}
+{"ttft_s": 183.2945, "total_s": 206.7368, "prompt_tokens": 65724, "completion_tokens": 512, "decode_tps": 21.84, "wall_tps": 2.48, "prefill_tps": 358.6, "chars": 2016, "label": "FlashNext UD-IQ4_XS long bands 0-11+25-34 ub1024 ctx72k", "model": "x", "ctx_target": 64000, "task": "code", "run": 1, "ts": "2026-08-27T01:43:04-0600"}
+{"ttft_s": 183.8475, "total_s": 207.4724, "prompt_tokens": 65726, "completion_tokens": 512, "decode_tps": 21.67, "wall_tps": 2.47, "prefill_tps": 357.5, "chars": 2062, "label": "FlashNext UD-IQ4_XS long bands 0-11+25-34 ub1024 ctx72k", "model": "x", "ctx_target": 64000, "task": "code", "run": 2, "ts": "2026-08-27T01:46:31-0600"}
+  >> FlashNext UD-IQ4_XS long bands 0-11+25-34 ub1024 ctx72k ctx~64000 code: decode median 21.67 tok/s, prefill median 358.6 tok/s
+{"ttft_s": 182.4983, "total_s": 197.5566, "prompt_tokens": 65719, "completion_tokens": 320, "decode_tps": 21.33, "wall_tps": 1.62, "prefill_tps": 360.1, "chars": 1574, "label": "FlashNext UD-IQ4_XS long bands 0-11+25-34 ub1024 ctx72k", "model": "x", "ctx_target": 64000, "task": "reason", "run": 0, "ts": "2026-08-27T01:52:55-0600"}
+{"ttft_s": 182.5561, "total_s": 194.6477, "prompt_tokens": 65717, "completion_tokens": 266, "decode_tps": 22.08, "wall_tps": 1.37, "prefill_tps": 360.0, "chars": 1323, "label": "FlashNext UD-IQ4_XS long bands 0-11+25-34 ub1024 ctx72k", "model": "x", "ctx_target": 64000, "task": "reason", "run": 1, "ts": "2026-08-27T01:56:10-0600"}
+{"ttft_s": 182.0502, "total_s": 196.7814, "prompt_tokens": 65718, "completion_tokens": 329, "decode_tps": 22.41, "wall_tps": 1.67, "prefill_tps": 361.0, "chars": 1637, "label": "FlashNext UD-IQ4_XS long bands 0-11+25-34 ub1024 ctx72k", "model": "x", "ctx_target": 64000, "task": "reason", "run": 2, "ts": "2026-08-27T01:59:26-0600"}
+  >> FlashNext UD-IQ4_XS long bands 0-11+25-34 ub1024 ctx72k ctx~64000 reason: decode median 22.08 tok/s, prefill median 360.1 tok/s
+
+############ E: prefill ladder, wall time for a linear fit :: 2026-08-27T01:59:26-06:00
+
+=== INSTRUMENT A: prefill scaling (cache OFF) ===
+Flat tok/s past 8k => sparse budget engaged. ~1/N falloff => DENSE fallback.
+
+     ctx  prompt_tok  prefill tok/s    vs 2k
+    2048        2003          162.3    1.00x
+    8192        8130          354.4    2.18x
+   16384       16479          387.2    2.39x
+   32768       32788          443.6    2.73x
+   65536       65470          386.6    2.38x
+
+############ E: needle grid 1k / 16k / 32k :: 2026-08-27T02:04:48-06:00
+
+############ PHASE E COMPLETE :: 2026-08-27T02:58:54-06:00

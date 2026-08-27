@@ -1,0 +1,54 @@
+
+############ Q2_K_XL bands 0-3+25-28, ub 2048, ctx 32768 :: 2026-08-27T01:16:23-06:00
+### FINAL-D-0-3+25-28 band=blk\.([0-3]|2[5-8])\.ffn_(up|down|gate|gate_up)_(ch|)exps ctx=32768 quant=UD-Q2_K_XL 2026-08-27T01:16:27-06:00
+HEALTHY after 80s
+0, 22990 MiB
+1, 20752 MiB
+RAM used 686 MB, cache 53357 MB, avail 53585 MB
+1.09.791.791 I load_tensors:   CPU_Mapped model buffer size = 31952.86 MiB
+1.09.791.792 I load_tensors:   CPU_Mapped model buffer size =  3843.13 MiB
+1.09.791.793 I load_tensors:        CUDA0 model buffer size = 20757.78 MiB
+1.09.791.793 I load_tensors:        CUDA1 model buffer size = 19114.49 MiB
+1.13.629.716 I operator(): creating indexer KV cache, size = 32768 cells
+{"ttft_s": 0.6221, "total_s": 12.2453, "prompt_tokens": 122, "completion_tokens": 512, "decode_tps": 44.05, "wall_tps": 41.81, "prefill_tps": 196.1, "chars": 2070, "label": "FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k", "model": "x", "ctx_target": 0, "task": "code", "run": 0, "ts": "2026-08-27T01:18:35-0600"}
+{"ttft_s": 0.652, "total_s": 13.7655, "prompt_tokens": 125, "completion_tokens": 512, "decode_tps": 39.04, "wall_tps": 37.19, "prefill_tps": 191.7, "chars": 2261, "label": "FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k", "model": "x", "ctx_target": 0, "task": "code", "run": 1, "ts": "2026-08-27T01:18:49-0600"}
+  >> FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k ctx~0 code: decode median 41.545 tok/s, prefill median 193.89999999999998 tok/s
+{"ttft_s": 0.6907, "total_s": 12.7591, "prompt_tokens": 156, "completion_tokens": 512, "decode_tps": 42.43, "wall_tps": 40.13, "prefill_tps": 225.9, "chars": 1332, "label": "FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k", "model": "x", "ctx_target": 0, "task": "reason", "run": 0, "ts": "2026-08-27T01:19:04-0600"}
+{"ttft_s": 0.684, "total_s": 11.9371, "prompt_tokens": 154, "completion_tokens": 512, "decode_tps": 45.5, "wall_tps": 42.89, "prefill_tps": 225.1, "chars": 1402, "label": "FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k", "model": "x", "ctx_target": 0, "task": "reason", "run": 1, "ts": "2026-08-27T01:19:16-0600"}
+  >> FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k ctx~0 reason: decode median 43.965 tok/s, prefill median 225.5 tok/s
+{"ttft_s": 5.0118, "total_s": 17.0376, "prompt_tokens": 4226, "completion_tokens": 512, "decode_tps": 42.58, "wall_tps": 30.05, "prefill_tps": 843.2, "chars": 1893, "label": "FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k", "model": "x", "ctx_target": 4000, "task": "code", "run": 0, "ts": "2026-08-27T01:19:40-0600"}
+{"ttft_s": 5.0099, "total_s": 16.8124, "prompt_tokens": 4223, "completion_tokens": 512, "decode_tps": 43.38, "wall_tps": 30.45, "prefill_tps": 842.9, "chars": 1977, "label": "FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k", "model": "x", "ctx_target": 4000, "task": "code", "run": 1, "ts": "2026-08-27T01:19:57-0600"}
+  >> FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k ctx~4000 code: decode median 42.980000000000004 tok/s, prefill median 843.05 tok/s
+{"ttft_s": 4.9361, "total_s": 12.7744, "prompt_tokens": 4214, "completion_tokens": 338, "decode_tps": 43.27, "wall_tps": 26.46, "prefill_tps": 853.7, "chars": 1650, "label": "FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k", "model": "x", "ctx_target": 4000, "task": "reason", "run": 0, "ts": "2026-08-27T01:20:16-0600"}
+{"ttft_s": 4.9777, "total_s": 10.2353, "prompt_tokens": 4219, "completion_tokens": 229, "decode_tps": 43.78, "wall_tps": 22.37, "prefill_tps": 847.6, "chars": 1135, "label": "FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k", "model": "x", "ctx_target": 4000, "task": "reason", "run": 1, "ts": "2026-08-27T01:20:26-0600"}
+  >> FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k ctx~4000 reason: decode median 43.525000000000006 tok/s, prefill median 850.6500000000001 tok/s
+{"ttft_s": 19.8745, "total_s": 33.1281, "prompt_tokens": 16523, "completion_tokens": 512, "decode_tps": 38.63, "wall_tps": 15.46, "prefill_tps": 831.4, "chars": 2141, "label": "FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k", "model": "x", "ctx_target": 16000, "task": "code", "run": 0, "ts": "2026-08-27T01:21:22-0600"}
+{"ttft_s": 19.8903, "total_s": 33.3811, "prompt_tokens": 16526, "completion_tokens": 512, "decode_tps": 37.95, "wall_tps": 15.34, "prefill_tps": 830.9, "chars": 2091, "label": "FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k", "model": "x", "ctx_target": 16000, "task": "code", "run": 1, "ts": "2026-08-27T01:21:56-0600"}
+  >> FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k ctx~16000 code: decode median 38.290000000000006 tok/s, prefill median 831.15 tok/s
+{"ttft_s": 19.7305, "total_s": 25.0784, "prompt_tokens": 16516, "completion_tokens": 206, "decode_tps": 38.7, "wall_tps": 8.21, "prefill_tps": 837.1, "chars": 1035, "label": "FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k", "model": "x", "ctx_target": 16000, "task": "reason", "run": 0, "ts": "2026-08-27T01:22:42-0600"}
+{"ttft_s": 19.8003, "total_s": 28.9246, "prompt_tokens": 16518, "completion_tokens": 359, "decode_tps": 39.45, "wall_tps": 12.41, "prefill_tps": 834.2, "chars": 1843, "label": "FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k", "model": "x", "ctx_target": 16000, "task": "reason", "run": 1, "ts": "2026-08-27T01:23:11-0600"}
+  >> FlashNext UD-Q2_K_XL own bands 0-3+25-28 | 2x3090 | ctx32k ctx~16000 reason: decode median 39.075 tok/s, prefill median 835.6500000000001 tok/s
+
+############ D: quality set on the winning Q2_K_XL bands :: 2026-08-27T01:23:11-06:00
+code-1: 21.51s  4140 chars  stop
+code-2: 23.07s  3450 chars  stop
+code-3: 14.41s  2347 chars  stop
+code-4: 8.8s  1247 chars  stop
+code-5: 46.29s  7800 chars  length
+agent-1: 28.19s  4868 chars  stop
+agent-2: 34.84s  6363 chars  stop
+reason-1: 16.94s  3172 chars  stop
+reason-2: 27.57s  3360 chars  stop
+reason-3: 25.1s  4174 chars  stop
+write-1: 2.54s  638 chars  stop
+write-2: 1.77s  235 chars  stop
+instr-1: 0.77s  68 chars  stop
+instr-2: 1.44s  64 chars  stop
+know-1: 35.37s  6496 chars  stop
+know-2: 28.26s  5188 chars  stop
+edge-1: 0.5s  61 chars  stop
+edge-2: 5.63s  1060 chars  stop
+math-1: 22.41s  2526 chars  stop
+math-2: 19.46s  2669 chars  stop
+
+############ PHASE D COMPLETE :: 2026-08-27T01:29:16-06:00

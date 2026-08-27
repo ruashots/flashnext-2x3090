@@ -1,0 +1,106 @@
+
+=== INSTRUMENT B: needle grid (5 records, 1 asked, distractors elsewhere) ===
+  L=1024   depth=0.05  trial=0   EXACT         ptok=1002
+  L=1024   depth=0.05  trial=1   EXACT         ptok=981
+  L=1024   depth=0.05  trial=2   EXACT         ptok=977
+  L=1024   depth=0.05  trial=3   EXACT         ptok=985
+  L=1024   depth=0.05  trial=4   EXACT         ptok=996
+  L=1024   depth=0.05  trial=5   EXACT         ptok=1011
+  L=1024   depth=0.25  trial=0   EXACT         ptok=986
+  L=1024   depth=0.25  trial=1   EXACT         ptok=1010
+  L=1024   depth=0.25  trial=2   EXACT         ptok=946
+  L=1024   depth=0.25  trial=3   EXACT         ptok=987
+  L=1024   depth=0.25  trial=4   EXACT         ptok=1028
+  L=1024   depth=0.25  trial=5   EXACT         ptok=979
+  L=1024   depth=0.5   trial=0   EXACT         ptok=975
+  L=1024   depth=0.5   trial=1   EXACT         ptok=998
+  L=1024   depth=0.5   trial=2   EXACT         ptok=992
+  L=1024   depth=0.5   trial=3   EXACT         ptok=976
+  L=1024   depth=0.5   trial=4   EXACT         ptok=963
+  L=1024   depth=0.5   trial=5   EXACT         ptok=986
+  L=1024   depth=0.75  trial=0   EXACT         ptok=978
+  L=1024   depth=0.75  trial=1   EXACT         ptok=1021
+  L=1024   depth=0.75  trial=2   EXACT         ptok=1003
+  L=1024   depth=0.75  trial=3   EXACT         ptok=969
+  L=1024   depth=0.75  trial=4   EXACT         ptok=981
+  L=1024   depth=0.75  trial=5   EXACT         ptok=980
+  L=1024   depth=0.95  trial=0   EXACT         ptok=980
+  L=1024   depth=0.95  trial=1   EXACT         ptok=971
+  L=1024   depth=0.95  trial=2   EXACT         ptok=1006
+  L=1024   depth=0.95  trial=3   EXACT         ptok=995
+  L=1024   depth=0.95  trial=4   EXACT         ptok=977
+  L=1024   depth=0.95  trial=5   EXACT         ptok=1000
+  L=16384  depth=0.05  trial=0   EXACT         ptok=16291
+  L=16384  depth=0.05  trial=1   EXACT         ptok=16288
+  L=16384  depth=0.05  trial=2   EXACT         ptok=16207
+  L=16384  depth=0.05  trial=3   EXACT         ptok=16211
+  L=16384  depth=0.05  trial=4   EXACT         ptok=16237
+  L=16384  depth=0.05  trial=5   EXACT         ptok=16280
+  L=16384  depth=0.25  trial=0   EXACT         ptok=16346
+  L=16384  depth=0.25  trial=1   EXACT         ptok=16446
+  L=16384  depth=0.25  trial=2   EXACT         ptok=16339
+  L=16384  depth=0.25  trial=3   EXACT         ptok=16371
+  L=16384  depth=0.25  trial=4   EXACT         ptok=16244
+  L=16384  depth=0.25  trial=5   EXACT         ptok=16307
+  L=16384  depth=0.5   trial=0   EXACT         ptok=16251
+  L=16384  depth=0.5   trial=1   EXACT         ptok=16192
+  L=16384  depth=0.5   trial=2   EXACT         ptok=16217
+  L=16384  depth=0.5   trial=3   EXACT         ptok=16350
+  L=16384  depth=0.5   trial=4   EXACT         ptok=16307
+  L=16384  depth=0.5   trial=5   EXACT         ptok=16273
+  L=16384  depth=0.75  trial=0   EXACT         ptok=16396
+  L=16384  depth=0.75  trial=1   EXACT         ptok=16388
+  L=16384  depth=0.75  trial=2   EXACT         ptok=16464
+  L=16384  depth=0.75  trial=3   EXACT         ptok=16204
+  L=16384  depth=0.75  trial=4   EXACT         ptok=16236
+  L=16384  depth=0.75  trial=5   EXACT         ptok=16346
+  L=16384  depth=0.95  trial=0   EXACT         ptok=16438
+  L=16384  depth=0.95  trial=1   EXACT         ptok=16294
+  L=16384  depth=0.95  trial=2   EXACT         ptok=16222
+  L=16384  depth=0.95  trial=3   EXACT         ptok=16392
+  L=16384  depth=0.95  trial=4   EXACT         ptok=16207
+  L=16384  depth=0.95  trial=5   EXACT         ptok=16190
+  L=32768  depth=0.05  trial=0   EXACT         ptok=32722
+  L=32768  depth=0.05  trial=1   EXACT         ptok=32725
+  L=32768  depth=0.05  trial=2   EXACT         ptok=32702
+  L=32768  depth=0.05  trial=3   EXACT         ptok=32646
+  L=32768  depth=0.05  trial=4   EXACT         ptok=32738
+  L=32768  depth=0.05  trial=5   EXACT         ptok=32450
+  L=32768  depth=0.25  trial=0   EXACT         ptok=32887
+  L=32768  depth=0.25  trial=1   EXACT         ptok=32539
+  L=32768  depth=0.25  trial=2   EXACT         ptok=32832
+  L=32768  depth=0.25  trial=3   EXACT         ptok=32610
+  L=32768  depth=0.25  trial=4   EXACT         ptok=32957
+  L=32768  depth=0.25  trial=5   EXACT         ptok=32883
+  L=32768  depth=0.5   trial=0   EXACT         ptok=32873
+  L=32768  depth=0.5   trial=1   EXACT         ptok=32829
+  L=32768  depth=0.5   trial=2   EXACT         ptok=32452
+  L=32768  depth=0.5   trial=3   EXACT         ptok=32690
+  L=32768  depth=0.5   trial=4   EXACT         ptok=32727
+  L=32768  depth=0.5   trial=5   EXACT         ptok=32833
+  L=32768  depth=0.75  trial=0   EXACT         ptok=32609
+  L=32768  depth=0.75  trial=1   EXACT         ptok=32833
+  L=32768  depth=0.75  trial=2   EXACT         ptok=32699
+  L=32768  depth=0.75  trial=3   EXACT         ptok=32654
+  L=32768  depth=0.75  trial=4   EXACT         ptok=33013
+  L=32768  depth=0.75  trial=5   EXACT         ptok=32755
+  L=32768  depth=0.95  trial=0   EXACT         ptok=32691
+  L=32768  depth=0.95  trial=1   EXACT         ptok=32673
+  L=32768  depth=0.95  trial=2   EXACT         ptok=32431
+  L=32768  depth=0.95  trial=3   EXACT         ptok=32528
+  L=32768  depth=0.95  trial=4   EXACT         ptok=32562
+  L=32768  depth=0.95  trial=5   EXACT         ptok=33043
+
+=== RESULTS: EXACT / total per cell ===
+     ctx    d=0.05    d=0.25    d=0.50    d=0.75    d=0.95
+    1024     6/6      6/6      6/6      6/6      6/6  
+   16384     6/6      6/6      6/6      6/6      6/6  
+   32768     6/6      6/6      6/6      6/6      6/6  
+
+=== FAILURE BREAKDOWN (non-EXACT only) ===
+
+=== VERDICT ===
+Positive control at 1024: 30/30 PASS.
+GREEN on retrieval: every cell >= 90%. NOTE: only meaningful alongside
+Instrument A. If prefill showed dense fallback, you proved the dense path
+works and learned nothing about QSA. Report both together.

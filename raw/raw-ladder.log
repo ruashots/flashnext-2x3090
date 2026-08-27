@@ -1,0 +1,36 @@
+==================== IQ4XS-Bplus1-ub2048 ub=2048 ====================
+### IQ4XS-Bplus1-ub2048 band=blk\.([0-8]|2[5-9]|3[01])\.ffn_(up|down|gate|gate_up)_(ch|)exps ctx=32768 quant=UD-IQ4_XS 2026-08-27T00:15:30-06:00
+HEALTHY after 145s
+0, 23310 MiB
+1, 23018 MiB
+RAM used 708 MB, cache 53604 MB, avail 53563 MB
+1.50.786.349 I load_tensors:   CPU_Mapped model buffer size = 40048.08 MiB
+1.50.786.350 I load_tensors:   CPU_Mapped model buffer size =  8872.03 MiB
+1.50.786.350 I load_tensors:        CUDA0 model buffer size = 20277.75 MiB
+1.50.786.351 I load_tensors:        CUDA1 model buffer size = 21381.88 MiB
+2.17.892.558 I operator(): creating indexer KV cache, size = 32768 cells
+{"ttft_s": 2.1767, "total_s": 9.6244, "prompt_tokens": 125, "completion_tokens": 256, "decode_tps": 34.37, "wall_tps": 26.6, "prefill_tps": 57.4, "chars": 1070, "label": "IQ4XS-Bplus1-ub2048", "model": "x", "ctx_target": 0, "task": "code", "run": 0, "ts": "2026-08-27T00:19:05-0600"}
+{"ttft_s": 0.9708, "total_s": 8.3549, "prompt_tokens": 124, "completion_tokens": 256, "decode_tps": 34.67, "wall_tps": 30.64, "prefill_tps": 127.7, "chars": 1097, "label": "IQ4XS-Bplus1-ub2048", "model": "x", "ctx_target": 0, "task": "code", "run": 1, "ts": "2026-08-27T00:19:14-0600"}
+  >> IQ4XS-Bplus1-ub2048 ctx~0 code: decode median 34.519999999999996 tok/s, prefill median 92.55 tok/s
+{"ttft_s": 6.5604, "total_s": 14.3445, "prompt_tokens": 4227, "completion_tokens": 256, "decode_tps": 32.89, "wall_tps": 17.85, "prefill_tps": 644.3, "chars": 1085, "label": "IQ4XS-Bplus1-ub2048", "model": "x", "ctx_target": 4000, "task": "code", "run": 0, "ts": "2026-08-27T00:19:37-0600"}
+{"ttft_s": 6.54, "total_s": 14.4892, "prompt_tokens": 4228, "completion_tokens": 256, "decode_tps": 32.21, "wall_tps": 17.67, "prefill_tps": 646.5, "chars": 1076, "label": "IQ4XS-Bplus1-ub2048", "model": "x", "ctx_target": 4000, "task": "code", "run": 1, "ts": "2026-08-27T00:19:51-0600"}
+  >> IQ4XS-Bplus1-ub2048 ctx~4000 code: decode median 32.55 tok/s, prefill median 645.4 tok/s
+{"ttft_s": 23.8243, "total_s": 32.3167, "prompt_tokens": 16529, "completion_tokens": 256, "decode_tps": 30.15, "wall_tps": 7.92, "prefill_tps": 693.8, "chars": 1216, "label": "IQ4XS-Bplus1-ub2048", "model": "x", "ctx_target": 16000, "task": "code", "run": 0, "ts": "2026-08-27T00:20:51-0600"}
+{"ttft_s": 23.8776, "total_s": 32.4098, "prompt_tokens": 16525, "completion_tokens": 256, "decode_tps": 30.0, "wall_tps": 7.9, "prefill_tps": 692.1, "chars": 1098, "label": "IQ4XS-Bplus1-ub2048", "model": "x", "ctx_target": 16000, "task": "code", "run": 1, "ts": "2026-08-27T00:21:23-0600"}
+  >> IQ4XS-Bplus1-ub2048 ctx~16000 code: decode median 30.075 tok/s, prefill median 692.95 tok/s
+  mean nvme 72 MB/s, gpu util 42%/25%
+==================== IQ4XS-Bplus2-ub512 ub=512 ====================
+### IQ4XS-Bplus2-ub512 band=blk\.([0-8]|2[5-9]|30)\.ffn_(up|down|gate|gate_up)_(ch|)exps ctx=32768 quant=UD-IQ4_XS 2026-08-27T00:21:27-06:00
+HEALTHY after 120s
+0, 22980 MiB
+1, 23594 MiB
+RAM used 548 MB, cache 53620 MB, avail 53723 MB
+1.34.518.705 I load_tensors:   CPU_Mapped model buffer size = 40048.08 MiB
+1.34.518.705 I load_tensors:   CPU_Mapped model buffer size =  7643.37 MiB
+1.34.518.706 I load_tensors:        CUDA0 model buffer size = 20277.75 MiB
+1.34.518.706 I load_tensors:        CUDA1 model buffer size = 22519.38 MiB
+1.53.190.669 I operator(): creating indexer KV cache, size = 32768 cells
+{"ttft_s": 1.0138, "total_s": 8.5434, "prompt_tokens": 124, "completion_tokens": 256, "decode_tps": 34.0, "wall_tps": 29.96, "prefill_tps": 122.3, "chars": 1157, "label": "IQ4XS-Bplus2-ub512", "model": "x", "ctx_target": 0, "task": "code", "run": 0, "ts": "2026-08-27T00:24:44-0600"}
+{"ttft_s": 0.9763, "total_s": 8.7366, "prompt_tokens": 125, "completion_tokens": 256, "decode_tps": 32.99, "wall_tps": 29.3, "prefill_tps": 128.0, "chars": 1104, "label": "IQ4XS-Bplus2-ub512", "model": "x", "ctx_target": 0, "task": "code", "run": 1, "ts": "2026-08-27T00:24:53-0600"}
+  >> IQ4XS-Bplus2-ub512 ctx~0 code: decode median 33.495000000000005 tok/s, prefill median 125.15 tok/s
+{"ttft_s": 11.1697, "total_s": 19.2108, "prompt_tokens": 4227, "completion_tokens": 256, "decode_tps": 31.84, "wall_tps": 13.33, "prefill_tps": 378.4, "chars": 1188, "label": "IQ4XS-Bplus2-ub512", "model": "x", "ctx_target": 4000, "task": "code", "run": 0, "ts": "2026-08-27T00:25:26-0600"}

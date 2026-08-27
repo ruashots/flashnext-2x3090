@@ -1,0 +1,176 @@
+
+############ CONFIG A: bands 0-8 + 25-31, ub 2048, ctx 32768 :: 2026-08-27T00:29:58-06:00
+### FINAL-A band=blk\.([0-8]|2[5-9]|3[01])\.ffn_(up|down|gate|gate_up)_(ch|)exps ctx=32768 quant=UD-IQ4_XS 2026-08-27T00:30:02-06:00
+HEALTHY after 115s
+0, 23310 MiB
+1, 23018 MiB
+RAM used 715 MB, cache 53588 MB, avail 53556 MB
+1.27.333.593 I load_tensors:   CPU_Mapped model buffer size = 40048.08 MiB
+1.27.333.594 I load_tensors:   CPU_Mapped model buffer size =  8872.03 MiB
+1.27.333.595 I load_tensors:        CUDA0 model buffer size = 20277.75 MiB
+1.27.333.595 I load_tensors:        CUDA1 model buffer size = 21381.88 MiB
+1.43.864.507 I operator(): creating indexer KV cache, size = 32768 cells
+
+############ A: speed, contexts 0/4k/16k, two tasks, 3 runs :: 2026-08-27T00:31:52-06:00
+{"ttft_s": 1.0176, "total_s": 16.6608, "prompt_tokens": 123, "completion_tokens": 512, "decode_tps": 32.73, "wall_tps": 30.73, "prefill_tps": 120.9, "chars": 1851, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 0, "task": "code", "run": 0, "ts": "2026-08-27T00:33:17-0600"}
+{"ttft_s": 1.0253, "total_s": 16.4845, "prompt_tokens": 128, "completion_tokens": 512, "decode_tps": 33.12, "wall_tps": 31.06, "prefill_tps": 124.8, "chars": 2029, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 0, "task": "code", "run": 1, "ts": "2026-08-27T00:33:33-0600"}
+{"ttft_s": 1.0125, "total_s": 16.0838, "prompt_tokens": 128, "completion_tokens": 512, "decode_tps": 33.97, "wall_tps": 31.83, "prefill_tps": 126.4, "chars": 2162, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 0, "task": "code", "run": 2, "ts": "2026-08-27T00:33:49-0600"}
+  >> FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k ctx~0 code: decode median 33.12 tok/s, prefill median 124.8 tok/s
+{"ttft_s": 1.0924, "total_s": 17.0193, "prompt_tokens": 155, "completion_tokens": 512, "decode_tps": 32.15, "wall_tps": 30.08, "prefill_tps": 141.9, "chars": 1222, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 0, "task": "reason", "run": 0, "ts": "2026-08-27T00:34:10-0600"}
+{"ttft_s": 1.0669, "total_s": 17.3505, "prompt_tokens": 156, "completion_tokens": 512, "decode_tps": 31.44, "wall_tps": 29.51, "prefill_tps": 146.2, "chars": 1245, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 0, "task": "reason", "run": 1, "ts": "2026-08-27T00:34:27-0600"}
+{"ttft_s": 1.1136, "total_s": 16.1141, "prompt_tokens": 152, "completion_tokens": 512, "decode_tps": 34.13, "wall_tps": 31.77, "prefill_tps": 136.5, "chars": 1278, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 0, "task": "reason", "run": 2, "ts": "2026-08-27T00:34:43-0600"}
+  >> FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k ctx~0 reason: decode median 32.15 tok/s, prefill median 141.9 tok/s
+{"ttft_s": 6.635, "total_s": 23.0103, "prompt_tokens": 4227, "completion_tokens": 512, "decode_tps": 31.27, "wall_tps": 22.25, "prefill_tps": 637.1, "chars": 2096, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 4000, "task": "code", "run": 0, "ts": "2026-08-27T00:35:15-0600"}
+{"ttft_s": 6.5797, "total_s": 21.912, "prompt_tokens": 4228, "completion_tokens": 512, "decode_tps": 33.39, "wall_tps": 23.37, "prefill_tps": 642.6, "chars": 2018, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 4000, "task": "code", "run": 1, "ts": "2026-08-27T00:35:37-0600"}
+{"ttft_s": 6.5283, "total_s": 22.3173, "prompt_tokens": 4229, "completion_tokens": 512, "decode_tps": 32.43, "wall_tps": 22.94, "prefill_tps": 647.8, "chars": 2113, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 4000, "task": "code", "run": 2, "ts": "2026-08-27T00:36:00-0600"}
+  >> FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k ctx~4000 code: decode median 32.43 tok/s, prefill median 642.6 tok/s
+{"ttft_s": 6.464, "total_s": 13.4055, "prompt_tokens": 4219, "completion_tokens": 222, "decode_tps": 32.12, "wall_tps": 16.56, "prefill_tps": 652.7, "chars": 1106, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 4000, "task": "reason", "run": 0, "ts": "2026-08-27T00:36:22-0600"}
+{"ttft_s": 6.4446, "total_s": 14.2718, "prompt_tokens": 4216, "completion_tokens": 263, "decode_tps": 33.75, "wall_tps": 18.43, "prefill_tps": 654.2, "chars": 1335, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 4000, "task": "reason", "run": 1, "ts": "2026-08-27T00:36:36-0600"}
+{"ttft_s": 6.4174, "total_s": 12.7515, "prompt_tokens": 4215, "completion_tokens": 215, "decode_tps": 34.11, "wall_tps": 16.86, "prefill_tps": 656.8, "chars": 1065, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 4000, "task": "reason", "run": 2, "ts": "2026-08-27T00:36:49-0600"}
+  >> FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k ctx~4000 reason: decode median 33.75 tok/s, prefill median 654.2 tok/s
+{"ttft_s": 23.85, "total_s": 40.8041, "prompt_tokens": 16526, "completion_tokens": 512, "decode_tps": 30.2, "wall_tps": 12.55, "prefill_tps": 692.9, "chars": 2119, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 16000, "task": "code", "run": 0, "ts": "2026-08-27T00:37:57-0600"}
+{"ttft_s": 23.835, "total_s": 40.9709, "prompt_tokens": 16525, "completion_tokens": 512, "decode_tps": 29.88, "wall_tps": 12.5, "prefill_tps": 693.3, "chars": 2141, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 16000, "task": "code", "run": 1, "ts": "2026-08-27T00:38:38-0600"}
+{"ttft_s": 23.8903, "total_s": 41.1236, "prompt_tokens": 16525, "completion_tokens": 512, "decode_tps": 29.71, "wall_tps": 12.45, "prefill_tps": 691.7, "chars": 2160, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 16000, "task": "code", "run": 2, "ts": "2026-08-27T00:39:19-0600"}
+  >> FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k ctx~16000 code: decode median 29.88 tok/s, prefill median 692.9 tok/s
+{"ttft_s": 23.699, "total_s": 31.5225, "prompt_tokens": 16516, "completion_tokens": 242, "decode_tps": 31.07, "wall_tps": 7.68, "prefill_tps": 696.9, "chars": 1236, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 16000, "task": "reason", "run": 0, "ts": "2026-08-27T00:40:16-0600"}
+{"ttft_s": 23.7662, "total_s": 30.937, "prompt_tokens": 16519, "completion_tokens": 224, "decode_tps": 31.37, "wall_tps": 7.24, "prefill_tps": 695.1, "chars": 1093, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 16000, "task": "reason", "run": 1, "ts": "2026-08-27T00:40:47-0600"}
+{"ttft_s": 23.6798, "total_s": 33.9616, "prompt_tokens": 16518, "completion_tokens": 321, "decode_tps": 31.31, "wall_tps": 9.45, "prefill_tps": 697.6, "chars": 1647, "label": "FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 16000, "task": "reason", "run": 2, "ts": "2026-08-27T00:41:21-0600"}
+  >> FlashNext UD-IQ4_XS | llama.cpp | 2x3090 | ctx32k ctx~16000 reason: decode median 31.31 tok/s, prefill median 696.9 tok/s
+
+############ A: quality set, non-thinking :: 2026-08-27T00:41:21-06:00
+code-1: 25.31s  3791 chars  stop
+code-2: 27.78s  3068 chars  stop
+code-3: 20.06s  2379 chars  stop
+code-4: 30.2s  3595 chars  stop
+code-5: 64.91s  7918 chars  length
+agent-1: 30.83s  3885 chars  stop
+agent-2: 45.99s  6408 chars  stop
+reason-1: 28.21s  3768 chars  stop
+reason-2: 31.24s  2972 chars  stop
+reason-3: 33.8s  4075 chars  stop
+write-1: 3.81s  634 chars  stop
+write-2: 2.8s  268 chars  stop
+instr-1: 1.36s  84 chars  stop
+instr-2: 2.34s  107 chars  stop
+know-1: 45.21s  6395 chars  stop
+know-2: 27.1s  4063 chars  stop
+edge-1: 0.75s  74 chars  stop
+edge-2: 7.24s  975 chars  stop
+math-1: 27.8s  2309 chars  stop
+math-2: 27.5s  2821 chars  stop
+A: mean nvme 38 MB/s, gpu util 35%/26% over 1020s
+
+############ CONFIG B: bands 0-9 + 25-32, ub 2048, ctx 73728, every long prompt :: 2026-08-27T00:49:26-06:00
+### FINAL-B band=blk\.([0-9]|2[5-9]|3[0-2])\.ffn_(up|down|gate|gate_up)_(ch|)exps ctx=73728 quant=UD-IQ4_XS 2026-08-27T00:49:30-06:00
+HEALTHY after 85s
+0, 22994 MiB
+1, 22702 MiB
+RAM used 880 MB, cache 53575 MB, avail 53391 MB
+1.11.155.518 I load_tensors:   CPU_Mapped model buffer size = 41268.78 MiB
+1.11.155.519 I load_tensors:   CPU_Mapped model buffer size = 10078.82 MiB
+1.11.155.519 I load_tensors:        CUDA0 model buffer size = 19140.25 MiB
+1.11.155.519 I load_tensors:        CUDA1 model buffer size = 20244.38 MiB
+1.15.966.761 I operator(): creating indexer KV cache, size = 73728 cells
+
+############ B: speed at 64k :: 2026-08-27T00:50:50-06:00
+[warmup fail] ctx=64000 task=code: IncompleteRead(0 bytes read)
+[fail] ctx=64000 task=code run=0: <urlopen error [Errno 111] Connection refused>
+[fail] ctx=64000 task=code run=1: <urlopen error [Errno 111] Connection refused>
+[fail] ctx=64000 task=code run=2: <urlopen error [Errno 111] Connection refused>
+[warmup fail] ctx=64000 task=reason: <urlopen error [Errno 111] Connection refused>
+[fail] ctx=64000 task=reason run=0: <urlopen error [Errno 111] Connection refused>
+[fail] ctx=64000 task=reason run=1: <urlopen error [Errno 111] Connection refused>
+[fail] ctx=64000 task=reason run=2: <urlopen error [Errno 111] Connection refused>
+
+############ CONFIG C: UD-Q2_K_XL, A's bands :: 2026-08-27T00:55:24-06:00
+### FINAL-C band=blk\.([0-8]|2[5-9]|3[01])\.ffn_(up|down|gate|gate_up)_(ch|)exps ctx=32768 quant=UD-Q2_K_XL 2026-08-27T00:55:28-06:00
+HEALTHY after 75s
+0, 18428 MiB
+1, 18014 MiB
+RAM used 699 MB, cache 53611 MB, avail 53572 MB
+1.04.032.805 I load_tensors:   CPU_Mapped model buffer size = 36817.25 MiB
+1.04.032.807 I load_tensors:   CPU_Mapped model buffer size =  6776.29 MiB
+1.04.032.807 I load_tensors:        CUDA0 model buffer size = 16195.27 MiB
+1.04.032.807 I load_tensors:        CUDA1 model buffer size = 16376.98 MiB
+1.07.071.327 I operator(): creating indexer KV cache, size = 32768 cells
+{"ttft_s": 0.876, "total_s": 14.8644, "prompt_tokens": 127, "completion_tokens": 512, "decode_tps": 36.6, "wall_tps": 34.44, "prefill_tps": 145.0, "chars": 2141, "label": "FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 0, "task": "code", "run": 0, "ts": "2026-08-27T00:57:38-0600"}
+{"ttft_s": 0.9317, "total_s": 15.066, "prompt_tokens": 124, "completion_tokens": 512, "decode_tps": 36.22, "wall_tps": 33.98, "prefill_tps": 133.1, "chars": 2340, "label": "FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 0, "task": "code", "run": 1, "ts": "2026-08-27T00:57:53-0600"}
+  >> FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k ctx~0 code: decode median 36.41 tok/s, prefill median 139.05 tok/s
+{"ttft_s": 0.9376, "total_s": 14.681, "prompt_tokens": 152, "completion_tokens": 512, "decode_tps": 37.25, "wall_tps": 34.87, "prefill_tps": 162.1, "chars": 1259, "label": "FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 0, "task": "reason", "run": 0, "ts": "2026-08-27T00:58:11-0600"}
+{"ttft_s": 1.1368, "total_s": 14.7079, "prompt_tokens": 157, "completion_tokens": 512, "decode_tps": 37.73, "wall_tps": 34.81, "prefill_tps": 138.1, "chars": 1364, "label": "FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 0, "task": "reason", "run": 1, "ts": "2026-08-27T00:58:26-0600"}
+  >> FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k ctx~0 reason: decode median 37.489999999999995 tok/s, prefill median 150.1 tok/s
+{"ttft_s": 5.9933, "total_s": 20.1443, "prompt_tokens": 4226, "completion_tokens": 512, "decode_tps": 36.18, "wall_tps": 25.42, "prefill_tps": 705.1, "chars": 2357, "label": "FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 4000, "task": "code", "run": 0, "ts": "2026-08-27T00:58:54-0600"}
+{"ttft_s": 5.959, "total_s": 20.3087, "prompt_tokens": 4228, "completion_tokens": 512, "decode_tps": 35.68, "wall_tps": 25.21, "prefill_tps": 709.5, "chars": 2159, "label": "FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 4000, "task": "code", "run": 1, "ts": "2026-08-27T00:59:14-0600"}
+  >> FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k ctx~4000 code: decode median 35.93 tok/s, prefill median 707.3 tok/s
+{"ttft_s": 5.8652, "total_s": 14.1378, "prompt_tokens": 4219, "completion_tokens": 311, "decode_tps": 37.73, "wall_tps": 22.0, "prefill_tps": 719.3, "chars": 1548, "label": "FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 4000, "task": "reason", "run": 0, "ts": "2026-08-27T00:59:36-0600"}
+{"ttft_s": 5.8438, "total_s": 13.6841, "prompt_tokens": 4214, "completion_tokens": 301, "decode_tps": 38.51, "wall_tps": 22.0, "prefill_tps": 721.1, "chars": 1515, "label": "FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 4000, "task": "reason", "run": 1, "ts": "2026-08-27T00:59:50-0600"}
+  >> FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k ctx~4000 reason: decode median 38.12 tok/s, prefill median 720.2 tok/s
+{"ttft_s": 22.2795, "total_s": 37.3051, "prompt_tokens": 16524, "completion_tokens": 512, "decode_tps": 34.08, "wall_tps": 13.72, "prefill_tps": 741.7, "chars": 2234, "label": "FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 16000, "task": "code", "run": 0, "ts": "2026-08-27T01:00:53-0600"}
+{"ttft_s": 22.2837, "total_s": 37.1369, "prompt_tokens": 16527, "completion_tokens": 512, "decode_tps": 34.47, "wall_tps": 13.79, "prefill_tps": 741.7, "chars": 2212, "label": "FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 16000, "task": "code", "run": 1, "ts": "2026-08-27T01:01:30-0600"}
+  >> FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k ctx~16000 code: decode median 34.275 tok/s, prefill median 741.7 tok/s
+{"ttft_s": 22.2425, "total_s": 29.1805, "prompt_tokens": 16517, "completion_tokens": 247, "decode_tps": 35.74, "wall_tps": 8.46, "prefill_tps": 742.6, "chars": 1240, "label": "FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 16000, "task": "reason", "run": 0, "ts": "2026-08-27T01:02:23-0600"}
+{"ttft_s": 22.2121, "total_s": 31.4074, "prompt_tokens": 16516, "completion_tokens": 320, "decode_tps": 34.91, "wall_tps": 10.19, "prefill_tps": 743.6, "chars": 1601, "label": "FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k", "model": "x", "ctx_target": 16000, "task": "reason", "run": 1, "ts": "2026-08-27T01:02:54-0600"}
+  >> FlashNext UD-Q2_K_XL | llama.cpp | 2x3090 | ctx32k ctx~16000 reason: decode median 35.325 tok/s, prefill median 743.1 tok/s
+code-1: 34.2s  5729 chars  stop
+code-2: 27.37s  3441 chars  stop
+code-3: 17.78s  2678 chars  stop
+code-4: 11.43s  1501 chars  stop
+code-5: 51.49s  7657 chars  stop
+agent-1: 26.49s  3897 chars  stop
+agent-2: 41.04s  6797 chars  stop
+reason-1: 20.6s  3305 chars  stop
+reason-2: 31.8s  3461 chars  stop
+reason-3: 30.73s  4355 chars  stop
+write-1: 3.11s  639 chars  stop
+write-2: 2.15s  266 chars  stop
+instr-1: 1.02s  74 chars  stop
+instr-2: 1.58s  55 chars  stop
+know-1: 35.33s  5346 chars  stop
+know-2: 26.76s  4724 chars  stop
+edge-1: 0.6s  68 chars  stop
+edge-2: 7.61s  1185 chars  stop
+math-1: 24.89s  2428 chars  stop
+math-2: 50.57s  5200 chars  length
+
+############ INTEGRITY CHECKS: every count below must be 0 :: 2026-08-27T01:10:21-06:00
+--- /mnt/models/flashnext-bench/runs/server-FINAL-A.log
+  retrying with smaller batch size           0
+0
+  Compute error                              0
+0
+  Context size has been exceeded             0
+0
+  failed to allocate graph                   0
+0
+  cudaMalloc failed                          0
+0
+  out of memory                              0
+0
+--- /mnt/models/flashnext-bench/runs/server-FINAL-B.log
+  retrying with smaller batch size           0
+0
+  Compute error                              0
+0
+  Context size has been exceeded             0
+0
+  failed to allocate graph                   0
+0
+  cudaMalloc failed                          1
+  out of memory                              1
+--- /mnt/models/flashnext-bench/runs/server-FINAL-C.log
+  retrying with smaller batch size           0
+0
+  Compute error                              0
+0
+  Context size has been exceeded             0
+0
+  failed to allocate graph                   0
+0
+  cudaMalloc failed                          0
+0
+  out of memory                              0
+0
+results.jsonl rows: 54
+quality.jsonl rows: 60
+
+############ FINAL RUN COMPLETE :: 2026-08-27T01:10:21-06:00
