@@ -418,13 +418,13 @@ It also changed which ubatch looked best. While the machine was paging, `-ub 512
 
 ## So, would I actually use it?
 
-For chatting, yes. 33 to 43 tok/s is completely usable, and the model itself is very good.
+For chatting, yes. 38 to 53 tok/s is completely usable, and the model itself is very good.
 
 I was honestly surprised by how strong it felt for something running partly out of my system RAM and SSD.
 
 I am still keeping the 27B as my daily driver.
 
-The issue is not whether Flash-Next runs. It does. The issue is that once you put it inside an agent loop, every call is roughly three times slower, and that stacks up quickly. Longer contexts make the gap worse.
+The issue is not whether Flash-Next runs. It does. The issue is that once you put it inside an agent loop, every call is roughly two and a half times slower at the same quant, and that stacks up quickly. Longer contexts make the gap worse.
 
 The quality test here was not good enough to tell me how much intelligence I am getting back for that speed loss.
 
