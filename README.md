@@ -45,17 +45,19 @@ Everything in this repo was measured on the machine below. The benchmark scripts
 | llama.cpp         | upstream `master`, after [#27742](https://github.com/ggml-org/llama.cpp/pull/27742) merged |
 | Model             | `unsloth/Qwen3.8-Flash-Next-GGUF`, UD-IQ4_XS                           |
 
-## Working 32k configuration
+## Working 32k configuration, the fast one
 
 ```bash
 /opt/llama.cpp/build/bin/llama-server \
   -m Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf \
   --host 0.0.0.0 --port 8080 --alias flashnext \
   -ngl 99 -sm layer -fit off -c 32768 -fa on -ctk f16 -ctv f16 \
-  -b 2048 -ub 2048 -t 8 --threads-batch 8 --jinja \
+  -b 2048 -ub 2048 -t 8 --threads-batch 8 --jinja --tensor-read-lazy on \
   -ot "^per_layer_token_embd\.weight$=CPU" \
   -ot "blk\.([0-8]|2[5-9]|3[01])\.ffn_(up|down|gate|gate_up)_(ch|)exps=CPU"
 ```
+
+`--tensor-read-lazy on` is not needed for the numbers below, it makes no measurable difference to generation speed. It is in there because it cuts load time from 45 seconds to 20.
 
 At load:
 
@@ -150,7 +152,19 @@ Leaving it on the sixteen-layer split wastes about 8 GiB of VRAM and makes the C
 
 ## Long context
 
-Long prompts need a different setup. The 32k configuration does not leave enough VRAM for the buffers built while processing something that large, so I moved 22 expert layers to the CPU and dropped `-ub` from 2048 to 1024, then launched at `-c 131072`.
+Long prompts need a different setup. The 32k configuration does not leave enough VRAM for the buffers built while processing something that large, so I moved 22 expert layers to the CPU and dropped `-ub` from 2048 to 1024.
+
+```bash
+/opt/llama.cpp/build/bin/llama-server \
+  -m Qwen3.8-Flash-Next-UD-IQ4_XS-00001-of-00003.gguf \
+  --host 0.0.0.0 --port 8080 --alias flashnext \
+  -ngl 99 -sm layer -fit off -c 131072 -fa on -ctk f16 -ctv f16 \
+  -b 2048 -ub 1024 -t 8 --threads-batch 8 --jinja --tensor-read-lazy on \
+  -ot "^per_layer_token_embd\.weight$=CPU" \
+  -ot "blk\.([0-9]|1[01]|2[5-9]|3[0-4])\.ffn_(up|down|gate|gate_up)_(ch|)exps=CPU"
+```
+
+Same two bands, just wider: layers 0-11 and 25-34 instead of 0-8 and 25-31.
 
 That loads at 21.8 and 22.5 GB across the two cards. Walking the prompt length up:
 
