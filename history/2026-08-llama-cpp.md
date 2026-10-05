@@ -1,5 +1,7 @@
 # Qwen3.8-Flash-Next on 2x RTX 3090s
 
+> This is where the repo started, in August 2026: Flash-Next on llama.cpp, about 38 to 40 tok/s. I run something else now, see the [README](../README.md). Kept as it was written. The scripts it names are in [`scripts/`](../scripts) and the logs in [`raw/`](../raw).
+
 Qwen released Qwen3.8-Flash-Next on August 26, 2026. It is a 125B MoE with a 51B n-gram lookup table, and most of the published ways to run it assume hardware well above what most people have at home. The two community builds aimed at 3090-class cards both start at four RTX 3090s.
 
 I wanted to know what happens with two.
