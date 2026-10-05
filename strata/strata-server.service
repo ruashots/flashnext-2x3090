@@ -1,0 +1,19 @@
+[Unit]
+Description=Strata: Qwen3.8-Flash-Next, OrcaRouter uncensored IQ4_XS, 2x RTX 3090, images on
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/strata/Strata
+# 127.0.0.1 = this machine only. Mine listens on the LAN (0.0.0.0); if yours does too, add --api-key <secret>.
+ExecStart=/opt/strata/Strata/.venv/bin/python -m serve.server --engine strata --config strata-orca-139-262k.json --host 127.0.0.1 --port 8080
+LimitMEMLOCK=infinity
+StandardOutput=append:/opt/strata/server.log
+StandardError=append:/opt/strata/server.log
+Restart=always
+RestartSec=30
+TimeoutStopSec=60
+
+[Install]
+WantedBy=multi-user.target
