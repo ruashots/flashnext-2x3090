@@ -1,0 +1,1 @@
+{"ttft_s": 102.3394, "total_s": 105.2897, "prompt_tokens": 205116, "completion_tokens": 216, "decode_tps": 73.22, "wall_tps": 2.05, "prefill_tps": 2004.3, "chars": 1114, "label": "strata-262k", "model": "Qwen3.8-Flash-Next-OrcaRouter", "ctx_target": 200000, "task": "reason", "run": 0, "ts": "2026-10-02T16:41:07-0600"}
