@@ -17,7 +17,7 @@ Before the tables, what these numbers can and can't tell you:
 - **The cards run at a 225 W power cap**, not at the stock limit.
 - **The 512K and 1M setups stretch the model with yarn to get past 262K, and serve one request at a time.** They're for when the length is needed, not for every day.
 - **A non-streamed ~1M request once never got its reply.** The engine finished in 544 s, but the answer never reached the client in the 30 minutes after that. Streamed requests at the same length came back fine, so every 1M needle test ran streamed.
-- **Agents sent requests to the server during some of the runs.** A request landing in the middle of a measurement slows it down, so some numbers are lower than a quiet machine would give.
+- **The server kept serving my agents during the whole day of runs.** Their requests landed in the middle of some measurements, so expect some noise in every row, and some numbers lower than a quiet machine would give.
 
 ## Speed
 

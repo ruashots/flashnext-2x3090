@@ -97,6 +97,14 @@ It takes about a minute to load. Then `http://127.0.0.1:8080` has Strata's chat 
 
 The published config and service listen on 127.0.0.1. Mine listens on my LAN. If you open yours up, add `--api-key <secret>` to the service command.
 
+## Tried and not kept
+
+Each one against the same setup, one at a time. The full notes, including the knobs I skipped and why, are in [`raw/strata-0402-knobs-2026-10-07.md`](../../raw/strata-0402-knobs-2026-10-07.md).
+
+- **`reasoning_loop_recovery`:** a guard that steps in when the model looks stuck thinking in a loop. With thinking on, it fired on 3 of my 20 normal questions, long code designs where the model was redrafting, which was real progress and not a loop. Firing that often on normal work decided it.
+- **Coupled Gumbel drafts** (`STRATA_SPEC_COUPLED=1`, `STRATA_SPEC_GUMBEL=1`): a different way of checking the draft head's guesses. Fewer guesses accepted and slightly slower, so no.
+- **`--spec-min-p 0.7`** instead of 0.5: more guesses accepted but fewer tokens per step, and the speed moved up in some tests and down in others. Within noise, so the default stays.
+
 ## The long-context configs
 
 [`strata-orca-0402-512k.json`](strata-orca-0402-512k.json) and [`strata-orca-0402-1m.json`](strata-orca-0402-1m.json) are what the 512K and 1M rows in [BENCHMARKS.md](../../BENCHMARKS.md) ran on. They stretch the model past its 262K with yarn (x2 and x4), take one request at a time and keep the image cap at 1024. They're for when the length is needed, not what runs day to day.
