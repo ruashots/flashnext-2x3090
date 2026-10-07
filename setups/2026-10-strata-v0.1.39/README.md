@@ -1,6 +1,24 @@
 # Setup: Strata v0.1.39, October 2026
 
-Qwen3.8-Flash-Next, OrcaRouter's uncensored IQ4_XS, on Strata v0.1.39 across two RTX 3090s. Images on, two requests at once, 262K context, conversation parking on. The numbers are in the [main README](../../README.md).
+Qwen3.8-Flash-Next, OrcaRouter's uncensored IQ4_XS, on Strata v0.1.39 across two RTX 3090s. Images on, two requests at once, 262K context, conversation parking on. What it measured is below.
+
+## Measured
+
+| Prompt length | Writes (tok/s) | Reads the prompt (tok/s) | First token |
+| ------------- | -------------: | -----------------------: | ----------: |
+| ~130 tokens   |            110 |                        - |       1.0 s |
+| ~4.2K tokens  |             96 |                      740 |       5.7 s |
+| ~62K tokens   |             96 |                    2,290 |      26.9 s |
+
+That is a code answer, 512 tokens out, median of 3 runs on Strata v0.1.39. The second task in the same run (a reasoning question on the short prompt, a question about the text on the long ones) wrote at 93 to 120 tok/s. Every prompt starts with a random nonce so nothing comes from a cache, temperature 0.7, top_p 0.95. Raw rows: [`raw/strata-139-bench-2026-10-04.jsonl`](../../raw/strata-139-bench-2026-10-04.jsonl), label `live-0.1.39-262k`.
+
+A few more things I checked on the same setup ([`raw/strata-139-probes-2026-10-04.jsonl`](../../raw/strata-139-probes-2026-10-04.jsonl)):
+
+- **Two short chats at once:** 55 and 62 tok/s each. Both 600-token answers were done in 12.3 s.
+- **Coming back to a 62K conversation** after another 62K conversation ran in between: 1.1 s to the first token. Reading it the first time took 35 s. That's Strata's conversation parking. On the build I ran the day before, without it, coming back took 27 s.
+- **Images:** a test picture with text and two shapes, everything read correctly in 3.6 s, also while another request was writing.
+- **Two fresh 62K prompts sent at the same time** is the slow case. Strata reads new prompts one after the other, so the first answer slowed to an average of 12 tok/s while the second prompt was being read, and the second one started after 55 s.
+- **Quality:** 5 of the 6 objectively graded prompts in my 20-prompt set, same as every setup before it. That set is small, it tells me nothing broke, not which one is smarter.
 
 ## The box
 
@@ -20,7 +38,7 @@ The whole server config is [`strata-orca-139-262k.json`](strata-orca-139-262k.js
 - `--mmap-experts`: Strata maps the 61 GiB expert file instead of reading it all into locked RAM, so the OS file cache holds what the cards don't, and can give that memory back. The experts used most stay on the cards, the CPU works on the rest.
 - `"layer_split": "26"` with `--trim-stage-weights`: layers 0-25 on the first card, 26-47 on the second, and each card only loads its own layers' weights, so more experts fit in VRAM.
 - `--batch 2 --batch-groups 2`: two requests at once, pipelined through the two cards.
-- `--conversation-cache-mib 8192 --conversation-cache-slots 8`: conversation parking. The numbers in the main README were measured with 4 slots, I run 8 now.
+- `--conversation-cache-mib 8192 --conversation-cache-slots 8`: conversation parking. The numbers above were measured with 4 slots, I ran 8 after.
 - `--kv-resident 20480`: the context's cache lives in RAM and only the part the attention reads stays on the cards, which leaves more VRAM for experts.
 - `"sampling"`: Strata answers greedy when the client sends no temperature. Before I set this, a hard prompt from a client that sends no sampler got stuck thinking in a loop and never answered. Now clients that send nothing get temperature 1.0, top_p 0.95, top_k 20, which is what the model card asks for.
 

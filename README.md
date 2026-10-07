@@ -2,31 +2,32 @@
 
 Qwen3.8-Flash-Next on two RTX 3090s. This page always shows the current setup. When it changes, the new one takes the top and the old one gets a chapter in [How we got here](#how-we-got-here).
 
-## Now: Strata v0.1.39, since October 2026
+## Now: Strata v0.1.40.2, since October 7, 2026
 
 OrcaRouter's uncensored IQ4_XS build of Qwen3.8-Flash-Next, served by [Strata](https://github.com/Niko1221/Strata) on two RTX 3090s. Images on, two requests at once, 262K context.
 
-It writes at around 100 tok/s, and the machine barely hums while it does it.
+It writes at 100 to 110 tok/s, reads long prompts at about 2,500 tok/s, and the machine barely hums while it does it.
 
 | Prompt length | Writes (tok/s) | Reads the prompt (tok/s) | First token |
 | ------------- | -------------: | -----------------------: | ----------: |
-| ~130 tokens   |            110 |                        - |       1.0 s |
-| ~4.2K tokens  |             96 |                      740 |       5.7 s |
-| ~62K tokens   |             96 |                    2,290 |      26.9 s |
+| ~140 tokens   |            110 |                        - |       1.2 s |
+| ~4.2K tokens  |            112 |                      989 |       4.3 s |
+| ~66K tokens   |            100 |                    2,487 |      26.4 s |
+| ~131K tokens  |             93 |                    2,564 |      51.2 s |
 
-That is a code answer, 512 tokens out, median of 3 runs on Strata v0.1.39. The second task in the same run (a reasoning question on the short prompt, a question about the text on the long ones) wrote at 93 to 120 tok/s. Every prompt starts with a random nonce so nothing comes from a cache, temperature 0.7, top_p 0.95. Raw rows: [`raw/strata-139-bench-2026-10-04.jsonl`](raw/strata-139-bench-2026-10-04.jsonl), label `live-0.1.39-262k`.
+Median of 6 runs (3 code answers, 3 reasoning or questions about the text), 512 tokens max, temperature 0.7, top_p 0.95, a random nonce at the start of every prompt so nothing comes from a cache. Raw rows: [`raw/strata-canonical-bench-2026-10-07.jsonl`](raw/strata-canonical-bench-2026-10-07.jsonl), label `C262`.
 
-A few more things I checked on the same setup ([`raw/strata-139-probes-2026-10-04.jsonl`](raw/strata-139-probes-2026-10-04.jsonl)):
+The full set, with 512K and 1M, retrieval, GSM8K, the method and what it can't tell you, is in **[BENCHMARKS.md](BENCHMARKS.md)**. The short version:
 
-- **Two short chats at once:** 55 and 62 tok/s each. Both 600-token answers were done in 12.3 s.
-- **Coming back to a 62K conversation** after another 62K conversation ran in between: 1.1 s to the first token. Reading it the first time took 35 s. That's Strata's conversation parking. On the build I ran the day before, without it, coming back took 27 s.
-- **Images:** a test picture with text and two shapes, everything read correctly in 3.6 s, also while another request was writing.
-- **Two fresh 62K prompts sent at the same time** is the slow case. Strata reads new prompts one after the other, so the first answer slowed to an average of 12 tok/s while the second prompt was being read, and the second one started after 55 s.
-- **Quality:** 5 of the 6 objectively graded prompts in my 20-prompt set, same as every setup before it. That set is small, it tells me nothing broke, not which one is smarter.
+- **Retrieval:** 61 of 61 planted facts found, from 4K up to 1M on the stretched setups. That's finding things in a long text, not reasoning over all of it.
+- **GSM8K:** 1,271 of the 1,319 test problems, 96.4%, thinking off.
+- **Two short chats at once:** about 58 tok/s each, and the second one starts in about a second instead of waiting.
+- **Screenshots:** a full-screen 2560x1440 log screenshot with small text, 6 of its 7 codes read exactly. At the image cap I had before it was 0 of 7.
+- **Coming back to a parked 62K conversation:** 1.1 s to the first token instead of reading it again (measured on v0.1.39 with the same settings).
 
-The box: 2x RTX 3090 24 GB, Ryzen 7 9800X3D, 64 GB DDR5, NVMe, Proxmox with the server in a container.
+The box: 2x RTX 3090 24 GB capped at 225 W, Ryzen 7 9800X3D, 64 GB DDR5, NVMe, Proxmox with the server in a container.
 
-**The full recipe, config and build steps: [`setups/2026-10-strata-v0.1.39/`](setups/2026-10-strata-v0.1.39/).**
+**The full recipe, configs and build steps: [`setups/2026-10-strata-v0.1.40.2/`](setups/2026-10-strata-v0.1.40.2/).**
 
 ## How we got here
 
@@ -46,7 +47,11 @@ A 3.05 bpw EXL3 build was small enough that most of it fit on the two cards, wit
 
 ### October 2026: Strata, 93 to 120 tok/s
 
-I kept running into Strata, didn't quite believe it, then tested it. The first try, v0.1.34, already wrote at about 90 tok/s on code and up to 110 on reasoning, and the whole machine was weirdly chill doing it. I'd spent about a week trying something vaguely similar myself and didn't get results this good. v0.1.39 then made two requests at once official and added conversation parking: coming back to a 62K conversation went from 27 s to 1.1 s. That's the setup at the top.
+I kept running into Strata, didn't quite believe it, then tested it. The first try, v0.1.34, already wrote at about 90 tok/s on code and up to 110 on reasoning, and the whole machine was weirdly chill doing it. I'd spent about a week trying something vaguely similar myself and didn't get results this good. v0.1.39 then made two requests at once official and added conversation parking: coming back to a 62K conversation went from 27 s to 1.1 s. [That setup](setups/2026-10-strata-v0.1.39/) ran until the next engine.
+
+### October 7, 2026: Strata v0.1.40.2, tuned
+
+Same setup on the newer engine, then I tried the tuning knobs one at a time. The one that stayed was the image cap: a full-screen screenshot with small text went from 0 of 7 codes read to 6 of 7. Then the overnight run I'd promised on Reddit: speed up to 1M, needle tests up to 1M and the full GSM8K set, all in [BENCHMARKS.md](BENCHMARKS.md). That's the setup at the top.
 
 ## Credits
 
@@ -59,8 +64,11 @@ Strata is by [Niko1221](https://github.com/Niko1221), and it's the reason this b
 | Path | What it is |
 | --- | --- |
 | [`setups/`](setups) | One folder per setup: config, service and the steps to build it. The newest is what runs now |
+| [`BENCHMARKS.md`](BENCHMARKS.md) | The full benchmark set for the current setup: speed to 1M, retrieval, GSM8K, method and limits |
 | [`scripts/bench.py`](scripts/bench.py) | Speed: nonce per prompt, warm-up first, decode and prompt reading separately |
 | [`scripts/quality.py`](scripts/quality.py), [`scripts/autograde.py`](scripts/autograde.py) | The fixed 20-prompt set and the grader for its 6 objective items |
 | [`scripts/probe.py`](scripts/probe.py) | Images, two requests at once, coming back to a conversation |
 | [`scripts/suite139.sh`](scripts/suite139.sh) | All of the above against one server: `URL=http://127.0.0.1:8080/v1 scripts/suite139.sh my-run` |
+| [`scripts/canonical_262k.sh`](scripts/canonical_262k.sh), [`canonical_long.sh`](scripts/canonical_long.sh), [`canonical_1m_rest.sh`](scripts/canonical_1m_rest.sh) | The benchmark set in BENCHMARKS.md, with [`gsm8k.py`](scripts/gsm8k.py), [`needle_multikey.py`](scripts/needle_multikey.py), [`needle_stream.py`](scripts/needle_stream.py) and [`canonical_summary.py`](scripts/canonical_summary.py) for the tables |
+| [`scripts/knob.sh`](scripts/knob.sh), [`scripts/quality_think.py`](scripts/quality_think.py) | One tuning knob against the base bench, and the 20-prompt set with thinking on |
 | [`raw/`](raw) | Every result row and log behind the numbers |
