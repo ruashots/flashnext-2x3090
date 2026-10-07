@@ -2,7 +2,7 @@
 
 Qwen3.8-Flash-Next, OrcaRouter's uncensored IQ4_XS, on Strata v0.1.40.2 across two RTX 3090s. Images on with a 4096-token cap, two requests at once, 262K context, conversation parking on. The numbers are in the [main README](../../README.md) and the full set is in [BENCHMARKS.md](../../BENCHMARKS.md).
 
-It is the [v0.1.39 setup](../2026-10-strata-v0.1.39/) on the newer engine, with one change: pictures get up to 4096 tokens instead of 1024.
+It is the [v0.1.39 setup](../2026-10-strata-v0.1.39/) on the newer engine, with one change: pictures get up to 4096 tokens instead of 1024. The engine alone, timed by the engine against v0.1.40.1 on the same config, wrote about 5% faster at 4K (21.9 against 23.1 ms per step), the same at 60K, and read 60K prompts about 8% faster (2,338 against 2,171 tok/s). One run per version on a live server, so a few percent either way is noise ([details](../../raw/strata-engine-timing-2026-10-07.md)).
 
 ## The box
 

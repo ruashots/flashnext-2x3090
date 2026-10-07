@@ -51,7 +51,7 @@ I kept running into Strata, didn't quite believe it, then tested it. The first t
 
 ### October 7, 2026: Strata v0.1.40.2, tuned
 
-Same setup on the newer engine, then I tried the tuning knobs one at a time. The one that stayed was the image cap: a full-screen screenshot with small text went from 0 of 7 codes read to 6 of 7. Then the overnight run I'd promised on Reddit: speed up to 1M, needle tests up to 1M and the full GSM8K set, all in [BENCHMARKS.md](BENCHMARKS.md). That's the setup at the top.
+Same setup on the newer engine. Timed by the engine itself against v0.1.40.1, writing got about 5% faster at 4K and stayed the same at 60K, and long prompts read about 8% faster ([how it was counted](raw/strata-engine-timing-2026-10-07.md)). Then I tried the tuning knobs one at a time. The one that stayed was the image cap: a full-screen screenshot with small text went from 0 of 7 codes read to 6 of 7. Then the overnight run I'd promised on Reddit: speed up to 1M, needle tests up to 1M and the full GSM8K set, all in [BENCHMARKS.md](BENCHMARKS.md). That's the setup at the top.
 
 ## Credits
 
