@@ -215,13 +215,36 @@ def aba(a, fh):
     print(json.dumps(out), flush=True)
 
 
+def shot(a, fh):
+    """A 2560x1440 log screenshot in small type: how many of its 7 ERROR-line codes come back exactly."""
+    import os, re
+    here = os.path.dirname(os.path.abspath(__file__))
+    b64 = base64.b64encode(open(os.path.join(here, "probe-screenshot.png"), "rb").read()).decode()
+    targets = open(os.path.join(here, "probe-screenshot-targets.txt")).read().split()
+    q = ("This is a screenshot of a server log. List every ref= value that appears on an ERROR line, exactly as "
+         "written, one per line, and nothing else.")
+    body = {"model": a.model, "max_tokens": 400, "temperature": 0, "chat_template_kwargs": {"enable_thinking": False},
+            "messages": [{"role": "user", "content": [
+                {"type": "image_url", "image_url": {"url": "data:image/png;base64," + b64}},
+                {"type": "text", "text": q}]}]}
+    t0 = time.perf_counter()
+    o = post(a.url, body)
+    ans = o["choices"][0]["message"].get("content") or ""
+    got = set(re.findall(r"[A-Z0-9]{4}-[A-Z0-9]{4}", ans))
+    rec = {"label": a.label, "mode": "shot", "answer": ans, "exact": sorted(got & set(targets)),
+           "score": len(got & set(targets)), "of": len(targets), "wrong": sorted(got - set(targets)),
+           "usage": o.get("usage"), "seconds": round(time.perf_counter() - t0, 2)}
+    fh.write(json.dumps(rec) + "\n"); fh.flush()
+    print(json.dumps({k: rec[k] for k in ("score", "of", "wrong", "usage", "seconds")}), flush=True)
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("mode", choices=["greedy", "image", "concurrent", "demote", "imgconc", "aba"])
+    ap.add_argument("mode", choices=["greedy", "image", "concurrent", "demote", "imgconc", "aba", "shot"])
     ap.add_argument("--url", required=True); ap.add_argument("--model", default="Qwen3.8-Flash-Next-OrcaRouter")
     ap.add_argument("--label", required=True); ap.add_argument("--out", required=True)
     ap.add_argument("--max-tokens", type=int, default=128)
     ap.add_argument("--ctx", type=int, default=0); ap.add_argument("--offset", type=float, default=0.0)
     a = ap.parse_args()
     with open(a.out, "a") as fh:
-        {"greedy": greedy, "image": image, "concurrent": concurrent, "demote": demote, "imgconc": imgconc, "aba": aba}[a.mode](a, fh)
+        {"greedy": greedy, "image": image, "concurrent": concurrent, "demote": demote, "imgconc": imgconc, "aba": aba, "shot": shot}[a.mode](a, fh)
