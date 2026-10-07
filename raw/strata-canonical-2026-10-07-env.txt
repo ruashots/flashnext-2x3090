@@ -1,0 +1,273 @@
+== host
+suiron
+pve-manager/9.2.2/b9984c6d90a4bd80 (running kernel: 7.0.2-6-pve)
+7.0.2-6-pve
+CPU(s):                                  16
+Model name:                              AMD Ryzen 7 9800X3D 8-Core Processor
+Thread(s) per core:                      2
+CPU(s) scaling MHz:                      46%
+CPU max MHz:                             5271.6221
+CPU min MHz:                             603.3790
+               total        used        free      shared  buff/cache   available
+Mem:              60          18           0          10          52          42
+      2 	Configured Memory Speed: 5200 MT/s
+      2 	Part Number: CMK64GX5M2B5200C40
+      2 	Size: 32 GB
+      2 	Speed: 4800 MT/s
+always madvise [never]
+index, name, memory.total [MiB], driver_version, pcie.link.gen.max, pcie.link.width.max, power.limit [W]
+0, NVIDIA GeForce RTX 3090, 24576 MiB, 595.71.05, 4, 16, 225.00 W
+1, NVIDIA GeForce RTX 3090, 24576 MiB, 595.71.05, 4, 16, 225.00 W
+	[4mGPU0	GPU1	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+GPU0	 X 	PHB	0-15	0		N/A
+GPU1	PHB	 X 	0-15	0		N/A
+
+NAME    MODEL                  SIZE ROTA
+sda     HGST HTS721010A9E630 931.5G    1
+sdb     FUJITSU MHY2250BH    232.9G    1
+nvme0n1 XPG SPECTRIX S40G      1.9T    0
+== container (the LXC the server runs in)
+cores: 16
+memory: 59392
+swap: 0
+PRETTY_NAME="Ubuntu 24.04 LTS"
+Cuda compilation tools, release 13.0, V13.0.88
+Build cuda_13.0.r13.0/compiler.36424714_0
+e8ca9af setup: engine versions compare all four numbers and MIN_ENGINE is 0.1.40.2, so an installed 0.1.40 engine is replaced by the new one
+v0.1.40.2
+{
+ "source": "local",
+ "version": "0.1.40.2",
+ "archs": [
+  86
+ ],
+ "vision": "gpu",
+ "cuda_dirs": [
+  "/usr/local/cuda/bin",
+  "/usr/local/cuda/lib64"
+ ],
+ "src": "72af3ad7bd9126f6",
+ "vision_src": "1fb2b3fb797ec402"
+}total 96074952
+drwxr-xr-x 3 root root        4096 Oct  2 08:37 .
+drwxr-xr-x 3 root root        4096 Oct  2 02:17 ..
+drwxr-xr-x 3 root root        4096 Oct  2 02:17 .cache
+-rw-r--r-- 1 root root 44766155936 Oct  2 08:36 Qwen3.8-Flash-Next-Uncensored-IQ4_XS-00001-of-00003.gguf
+-rw-r--r-- 1 root root 44735995008 Oct  2 08:37 Qwen3.8-Flash-Next-Uncensored-IQ4_XS-00002-of-00003.gguf
+-rw-r--r-- 1 root root  7971004256 Oct  2 08:26 Qwen3.8-Flash-Next-Uncensored-IQ4_XS-00003-of-00003.gguf
+-rw-r--r-- 1 root root   907543296 Oct  2 08:23 mmproj-Qwen3.8-Flash-Next-Uncensored-F16.gguf
+63G	packs/orca-iq4xs
+dense.bin
+dense.txt
+draft_vocab.bin
+experts.bin
+== strata-orca-0402-262k-img4096.json
+{
+  "exe": "/opt/strata/Strata-0402/engine/strata",
+  "args": [
+    "--pack",
+    "packs/orca-iq4xs",
+    "--native",
+    "/opt/strata/models/orca-iq4xs/Qwen3.8-Flash-Next-Uncensored-IQ4_XS-00001-of-00003.gguf",
+    "--expert-profile",
+    "data/expert-profile.bin",
+    "--expert-cache",
+    "auto",
+    "--prefill",
+    "auto",
+    "--spec",
+    "4",
+    "--spec-min-p",
+    "0.5",
+    "--mtp",
+    "mtp/rt",
+    "--max-context",
+    "262144",
+    "--kv",
+    "int8",
+    "--mmap-experts",
+    "--kv-resident",
+    "20480",
+    "--vision",
+    "--vram-reserve-mib",
+    "700",
+    "--batch",
+    "2",
+    "--batch-groups",
+    "2",
+    "--trim-stage-weights",
+    "--conversation-cache-mib",
+    "8192",
+    "--conversation-cache-slots",
+    "8"
+  ],
+  "cwd": "/opt/strata/Strata-0402",
+  "tokenizer": "packs/orca-iq4xs/tokenizer",
+  "model_name": "Qwen3.8-Flash-Next-OrcaRouter",
+  "log": "/opt/strata/strata-orca-iq4xs.log",
+  "lib_dirs": [
+    "/usr/local/cuda/bin",
+    "/usr/local/cuda/lib64"
+  ],
+  "gpu": [
+    0,
+    1
+  ],
+  "layer_split": "26",
+  "host": "0.0.0.0",
+  "port": 8080,
+  "env": {
+    "STRATA_IQ_PREFETCH": "16384"
+  },
+  "vision": {
+    "exe": "/opt/strata/Strata-0402/engine/strata-vision",
+    "mmproj": "/opt/strata/models/orca-iq4xs/mmproj-Qwen3.8-Flash-Next-Uncensored-F16.gguf",
+    "model": "/opt/strata/models/orca-iq4xs/Qwen3.8-Flash-Next-Uncensored-IQ4_XS-00001-of-00003.gguf",
+    "gpu": true,
+    "max_tokens": 4096
+  },
+  "sampling": {
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 20
+  },
+  "aliases": [
+    "orca-iq4xs"
+  ]
+}== strata-orca-512k.json
+{
+  "exe": "/opt/strata/Strata-0402/engine/strata",
+  "args": [
+    "--pack",
+    "packs/orca-iq4xs",
+    "--native",
+    "/opt/strata/models/orca-iq4xs/Qwen3.8-Flash-Next-Uncensored-IQ4_XS-00001-of-00003.gguf",
+    "--expert-profile",
+    "data/expert-profile.bin",
+    "--expert-cache",
+    "auto",
+    "--prefill",
+    "auto",
+    "--spec",
+    "4",
+    "--spec-min-p",
+    "0.5",
+    "--mtp",
+    "mtp/rt",
+    "--max-context",
+    "524288",
+    "--kv",
+    "int8",
+    "--mmap-experts",
+    "--kv-resident",
+    "20480",
+    "--vision",
+    "--vram-reserve-mib",
+    "700",
+    "--rope-scaling",
+    "yarn",
+    "--rope-scale",
+    "2"
+  ],
+  "cwd": "/opt/strata/Strata-0402",
+  "tokenizer": "packs/orca-iq4xs/tokenizer",
+  "model_name": "Qwen3.8-Flash-Next-OrcaRouter",
+  "log": "/opt/strata/strata-orca-iq4xs.log",
+  "lib_dirs": [
+    "/usr/local/cuda/bin",
+    "/usr/local/cuda/lib64"
+  ],
+  "gpu": [
+    0,
+    1
+  ],
+  "layer_split": "auto",
+  "host": "0.0.0.0",
+  "port": 8080,
+  "env": {
+    "STRATA_IQ_PREFETCH": "16384"
+  },
+  "vision": {
+    "exe": "/opt/strata/Strata-0402/engine/strata-vision",
+    "mmproj": "/opt/strata/models/orca-iq4xs/mmproj-Qwen3.8-Flash-Next-Uncensored-F16.gguf",
+    "model": "/opt/strata/models/orca-iq4xs/Qwen3.8-Flash-Next-Uncensored-IQ4_XS-00001-of-00003.gguf",
+    "gpu": true,
+    "max_tokens": 1024
+  },
+  "sampling": {
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 20
+  },
+  "aliases": [
+    "orca-iq4xs"
+  ]
+}== strata-orca-1m.json
+{
+  "exe": "/opt/strata/Strata-0402/engine/strata",
+  "args": [
+    "--pack",
+    "packs/orca-iq4xs",
+    "--native",
+    "/opt/strata/models/orca-iq4xs/Qwen3.8-Flash-Next-Uncensored-IQ4_XS-00001-of-00003.gguf",
+    "--expert-profile",
+    "data/expert-profile.bin",
+    "--expert-cache",
+    "auto",
+    "--prefill",
+    "auto",
+    "--spec",
+    "4",
+    "--spec-min-p",
+    "0.5",
+    "--mtp",
+    "mtp/rt",
+    "--max-context",
+    "1048576",
+    "--kv",
+    "int8",
+    "--mmap-experts",
+    "--kv-resident",
+    "20480",
+    "--vision",
+    "--vram-reserve-mib",
+    "700",
+    "--rope-scaling",
+    "yarn",
+    "--rope-scale",
+    "4"
+  ],
+  "cwd": "/opt/strata/Strata-0402",
+  "tokenizer": "packs/orca-iq4xs/tokenizer",
+  "model_name": "Qwen3.8-Flash-Next-OrcaRouter",
+  "log": "/opt/strata/strata-orca-iq4xs.log",
+  "lib_dirs": [
+    "/usr/local/cuda/bin",
+    "/usr/local/cuda/lib64"
+  ],
+  "gpu": [
+    0,
+    1
+  ],
+  "layer_split": "auto",
+  "host": "0.0.0.0",
+  "port": 8080,
+  "env": {
+    "STRATA_IQ_PREFETCH": "16384"
+  },
+  "vision": {
+    "exe": "/opt/strata/Strata-0402/engine/strata-vision",
+    "mmproj": "/opt/strata/models/orca-iq4xs/mmproj-Qwen3.8-Flash-Next-Uncensored-F16.gguf",
+    "model": "/opt/strata/models/orca-iq4xs/Qwen3.8-Flash-Next-Uncensored-IQ4_XS-00001-of-00003.gguf",
+    "gpu": true,
+    "max_tokens": 1024
+  },
+  "sampling": {
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 20
+  },
+  "aliases": [
+    "orca-iq4xs"
+  ]
+}

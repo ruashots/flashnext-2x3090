@@ -1,0 +1,47 @@
+Canonical benchmark set, Strata 0.1.40.2 on 2x RTX 3090, 2026-10-07. Exact commands, in the order they ran.
+Hardware, software versions and the three server configs: strata-canonical-2026-10-07-env.txt (same folder).
+
+Server: Strata v0.1.40.2 (commit e8ca9af), engine built from source with CUDA 13.0 for sm_86, run as
+  python -m serve.server --engine strata --config <config> --host 0.0.0.0 --port 8080
+Model: Qwen3.8-Flash-Next-OrcaRouter, IQ4_XS GGUF (3 shards) + native pack + MTP draft layer (see env file).
+Configs (full JSON in the env file):
+  C262 = strata-orca-0402-262k-img4096.json: 262,144 context, 2 requests at once (--batch 2 --batch-groups 2),
+         --layer-split 26 --trim-stage-weights, --kv int8 --kv-resident 20480, --mmap-experts, --spec 4 --spec-min-p 0.5,
+         conversation parking 8 GiB / 8 slots, images on (4096-token cap).
+  C512 = strata-orca-512k.json: 524,288 context, yarn x2, one request at a time, layer split auto.
+  C1M  = strata-orca-1m.json:  1,048,576 context, yarn x4, one request at a time, layer split auto.
+Client scripts: this repository's scripts/ (bench.py, probe.py, quality.py, autograde.py, gsm8k.py,
+needle_multikey.py, needle_stream.py, canonical_*.sh). Haystack for the needle tests: a plain clone of Strata at
+tag v0.1.40.2 (git clone https://github.com/Niko1221/Strata && git checkout v0.1.40.2), passed as STRATA=<path>;
+its tools/needle_bench.py builds the text from the repo's docs and sources.
+
+U=http://<server>:8080   M=Qwen3.8-Flash-Next-OrcaRouter
+
+# C262 (scripts/canonical_262k.sh)
+python3 scripts/bench.py --url $U/v1 --model $M --label C262 --out raw/strata-canonical-bench-2026-10-07.jsonl --contexts 0,4000,16000,32000,64000,128000 --tasks code,reason --runs 3
+python3 scripts/bench.py --url $U/v1 --model $M --label C262 --out raw/strata-canonical-bench-2026-10-07.jsonl --contexts 200000,245000 --tasks reason --runs 1 --warmup 0
+for c in 0 0 0 4000 4000 4000 32000; do python3 scripts/probe.py concurrent --url $U/v1 --label C262 --ctx $c --max-tokens 600 --out raw/strata-canonical-probes-2026-10-07.jsonl; done
+python3 $STRATA/tools/needle_bench.py --url $U --lengths 4k,16k,32k,64k,128k,200k,256k --depths 10,25,50,75,90 --out needle262.json
+python3 scripts/needle_multikey.py --strata $STRATA --url $U --lengths 32k,128k,256k --depths 10,50,90 --label C262 --out raw/strata-canonical-needle-2026-10-07.jsonl
+python3 scripts/quality.py --url $U/v1 --model $M --label C262 --out raw/strata-canonical-quality-2026-10-07.jsonl ; python3 scripts/autograde.py raw/strata-canonical-quality-2026-10-07.jsonl
+python3 scripts/gsm8k.py --url $U/v1 --model $M --label C262 --out raw/strata-canonical-gsm8k-2026-10-07.jsonl --workers 2
+
+# C512 (scripts/canonical_long.sh 512k, after switching the server config)
+python3 scripts/bench.py ... --label C512 --contexts 0,4000 --tasks code,reason --runs 3
+python3 scripts/bench.py ... --label C512 --contexts 300000,400000,500000 --tasks reason --runs 1 --warmup 0 --timeout 5400
+python3 $STRATA/tools/needle_bench.py --url $U --lengths 300k,400k,500k --depths 10,50,90 --timeout 5400
+python3 scripts/needle_multikey.py --strata $STRATA --url $U --lengths 400k,500k --depths 50 --label C512 --timeout 5400 --out ...
+
+# C1M (scripts/canonical_long.sh 1m for the speed part, then scripts/canonical_1m_rest.sh)
+python3 scripts/bench.py ... --label C1M --contexts 0,4000 --tasks code,reason --runs 3
+python3 scripts/bench.py ... --label C1M --contexts 600000,900000,1000000 --tasks reason --runs 1 --warmup 0 --timeout 5400
+python3 scripts/needle_stream.py --strata $STRATA --url $U --lengths 1000k --depths 10,50,90 --label C1M --out ...
+python3 scripts/needle_stream.py --strata $STRATA --url $U --lengths 600k,800k --depths 50 --label C1M --out ...
+python3 scripts/needle_multikey.py --strata $STRATA --url $U --lengths 1000k --depths 50 --label C1M --stream --out ...
+python3 scripts/quality.py ... --label C1M ; python3 scripts/gsm8k.py ... --label C1M --limit 250
+(At 1M the first try used Strata's needle_bench.py, which asks for a non-streamed reply: the engine finished in
+544 s but the reply never reached the client in the next 30 minutes, so the 1M needles were run streamed, with the
+same haystack, needle and seeded code words.)
+
+# Tables
+python3 scripts/canonical_summary.py

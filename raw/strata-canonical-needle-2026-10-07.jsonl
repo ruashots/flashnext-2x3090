@@ -1,0 +1,61 @@
+{"label": "C262", "test": "needle", "length": "4k", "depth": 10, "prompt_tokens": 4102, "seconds": 3.5, "found": true, "word": "meadow-copper-504", "answer": "meadow-copper-504"}
+{"label": "C262", "test": "needle", "length": "4k", "depth": 25, "prompt_tokens": 4102, "seconds": 3.3, "found": true, "word": "falcon-quartz-940", "answer": "falcon-quartz-940"}
+{"label": "C262", "test": "needle", "length": "4k", "depth": 50, "prompt_tokens": 4103, "seconds": 3.6, "found": true, "word": "willow-cobalt-696", "answer": "willow-cobalt-696"}
+{"label": "C262", "test": "needle", "length": "4k", "depth": 75, "prompt_tokens": 4103, "seconds": 3.6, "found": true, "word": "falcon-saffron-138", "answer": "falcon-saffron-138"}
+{"label": "C262", "test": "needle", "length": "4k", "depth": 90, "prompt_tokens": 4101, "seconds": 3.7, "found": true, "word": "quartz-tundra-528", "answer": "quartz-tundra-528"}
+{"label": "C262", "test": "needle", "length": "16k", "depth": 10, "prompt_tokens": 17278, "seconds": 10.9, "found": true, "word": "quartz-glacier-192", "answer": "quartz-glacier-192"}
+{"label": "C262", "test": "needle", "length": "16k", "depth": 25, "prompt_tokens": 17279, "seconds": 8.8, "found": true, "word": "tundra-falcon-946", "answer": "tundra-falcon-946"}
+{"label": "C262", "test": "needle", "length": "16k", "depth": 50, "prompt_tokens": 17279, "seconds": 8.7, "found": true, "word": "willow-glacier-745", "answer": "willow-glacier-745"}
+{"label": "C262", "test": "needle", "length": "16k", "depth": 75, "prompt_tokens": 17280, "seconds": 9.2, "found": true, "word": "falcon-juniper-150", "answer": "falcon-juniper-150"}
+{"label": "C262", "test": "needle", "length": "16k", "depth": 90, "prompt_tokens": 17278, "seconds": 10.7, "found": true, "word": "glacier-falcon-670", "answer": "glacier-falcon-670"}
+{"label": "C262", "test": "needle", "length": "32k", "depth": 10, "prompt_tokens": 32343, "seconds": 13.0, "found": true, "word": "copper-lantern-529", "answer": "copper-lantern-529"}
+{"label": "C262", "test": "needle", "length": "32k", "depth": 25, "prompt_tokens": 32342, "seconds": 13.3, "found": true, "word": "copper-willow-684", "answer": "copper-willow-684"}
+{"label": "C262", "test": "needle", "length": "32k", "depth": 50, "prompt_tokens": 32343, "seconds": 15.0, "found": true, "word": "lantern-harbor-205", "answer": "lantern-harbor-205"}
+{"label": "C262", "test": "needle", "length": "32k", "depth": 75, "prompt_tokens": 32345, "seconds": 8.3, "found": true, "word": "saffron-cobalt-199", "answer": "saffron-cobalt-199"}
+{"label": "C262", "test": "needle", "length": "32k", "depth": 90, "prompt_tokens": 32342, "seconds": 8.4, "found": true, "word": "quartz-falcon-733", "answer": "quartz-falcon-733"}
+{"label": "C262", "test": "needle", "length": "64k", "depth": 10, "prompt_tokens": 62627, "seconds": 24.6, "found": true, "word": "saffron-ember-796", "answer": "saffron-ember-796"}
+{"label": "C262", "test": "needle", "length": "64k", "depth": 25, "prompt_tokens": 62627, "seconds": 20.4, "found": true, "word": "tundra-meadow-576", "answer": "tundra-meadow-576"}
+{"label": "C262", "test": "needle", "length": "64k", "depth": 50, "prompt_tokens": 62626, "seconds": 18.8, "found": true, "word": "velvet-cobalt-406", "answer": "velvet-cobalt-406"}
+{"label": "C262", "test": "needle", "length": "64k", "depth": 75, "prompt_tokens": 62626, "seconds": 20.0, "found": true, "word": "glacier-harbor-815", "answer": "glacier-harbor-815"}
+{"label": "C262", "test": "needle", "length": "64k", "depth": 90, "prompt_tokens": 62625, "seconds": 13.0, "found": true, "word": "glacier-quartz-688", "answer": "glacier-quartz-688"}
+{"label": "C262", "test": "needle", "length": "128k", "depth": 10, "prompt_tokens": 126310, "seconds": 49.1, "found": true, "word": "lantern-ember-996", "answer": "lantern-ember-996"}
+{"label": "C262", "test": "needle", "length": "128k", "depth": 25, "prompt_tokens": 126312, "seconds": 42.8, "found": true, "word": "meadow-velvet-394", "answer": "meadow-velvet-394"}
+{"label": "C262", "test": "needle", "length": "128k", "depth": 50, "prompt_tokens": 126310, "seconds": 37.3, "found": true, "word": "quartz-willow-624", "answer": "quartz-willow-624"}
+{"label": "C262", "test": "needle", "length": "128k", "depth": 75, "prompt_tokens": 126312, "seconds": 43.1, "found": true, "word": "tundra-harbor-875", "answer": "tundra-harbor-875"}
+{"label": "C262", "test": "needle", "length": "128k", "depth": 90, "prompt_tokens": 126311, "seconds": 20.7, "found": true, "word": "meadow-copper-600", "answer": "meadow-copper-600"}
+{"label": "C262", "test": "needle", "length": "200k", "depth": 10, "prompt_tokens": 198058, "seconds": 71.3, "found": true, "word": "tundra-falcon-784", "answer": "tundra-falcon-784"}
+{"label": "C262", "test": "needle", "length": "200k", "depth": 25, "prompt_tokens": 198058, "seconds": 71.4, "found": true, "word": "quartz-meadow-448", "answer": "quartz-meadow-448"}
+{"label": "C262", "test": "needle", "length": "200k", "depth": 50, "prompt_tokens": 198058, "seconds": 49.7, "found": true, "word": "cobalt-ember-693", "answer": "cobalt-ember-693"}
+{"label": "C262", "test": "needle", "length": "200k", "depth": 75, "prompt_tokens": 198057, "seconds": 71.4, "found": true, "word": "velvet-quartz-960", "answer": "velvet-quartz-960"}
+{"label": "C262", "test": "needle", "length": "200k", "depth": 90, "prompt_tokens": 198058, "seconds": 24.9, "found": true, "word": "quartz-orchid-585", "answer": "quartz-orchid-585"}
+{"label": "C262", "test": "needle", "length": "256k", "depth": 10, "prompt_tokens": 250566, "seconds": 91.7, "found": true, "word": "quartz-falcon-848", "answer": "quartz-falcon-848"}
+{"label": "C262", "test": "needle", "length": "256k", "depth": 25, "prompt_tokens": 250567, "seconds": 93.5, "found": true, "word": "lantern-velvet-391", "answer": "lantern-velvet-391"}
+{"label": "C262", "test": "needle", "length": "256k", "depth": 50, "prompt_tokens": 250568, "seconds": 93.5, "found": true, "word": "juniper-cobalt-123", "answer": "juniper-cobalt-123"}
+{"label": "C262", "test": "needle", "length": "256k", "depth": 75, "prompt_tokens": 250567, "seconds": 93.2, "found": true, "word": "velvet-cobalt-272", "answer": "velvet-cobalt-272"}
+{"label": "C262", "test": "needle", "length": "256k", "depth": 90, "prompt_tokens": 250567, "seconds": 91.4, "found": true, "word": "willow-ember-160", "answer": "willow-ember-160"}
+{"label": "C262", "test": "multikey", "length": "32k", "depth": 10, "prompt_tokens": 32416, "found": true, "distractor_given": false, "key": "meadow-copper", "number": 7135241, "answer": "7135241", "seconds": 15.5}
+{"label": "C262", "test": "multikey", "length": "32k", "depth": 50, "prompt_tokens": 32416, "found": true, "distractor_given": false, "key": "falcon-quartz", "number": 8122250, "answer": "8122250", "seconds": 12.7}
+{"label": "C262", "test": "multikey", "length": "32k", "depth": 90, "prompt_tokens": 32414, "found": true, "distractor_given": false, "key": "marble-falcon", "number": 5858837, "answer": "5858837", "seconds": 14.8}
+{"label": "C262", "test": "multikey", "length": "128k", "depth": 10, "prompt_tokens": 126386, "found": true, "distractor_given": false, "key": "marble-lantern", "number": 4151952, "answer": "4151952", "seconds": 47.1}
+{"label": "C262", "test": "multikey", "length": "128k", "depth": 50, "prompt_tokens": 126384, "found": true, "distractor_given": false, "key": "marble-falcon", "number": 8603172, "answer": "8603172", "seconds": 47.6}
+{"label": "C262", "test": "multikey", "length": "128k", "depth": 90, "prompt_tokens": 126383, "found": true, "distractor_given": false, "key": "harbor-glacier", "number": 8530188, "answer": "8530188", "seconds": 49.2}
+{"label": "C262", "test": "multikey", "length": "256k", "depth": 10, "prompt_tokens": 250641, "found": true, "distractor_given": false, "key": "pebble-tundra", "number": 1657788, "answer": "1657788", "seconds": 97.9}
+{"label": "C262", "test": "multikey", "length": "256k", "depth": 50, "prompt_tokens": 250639, "found": true, "distractor_given": false, "key": "cobalt-ember", "number": 2090518, "answer": "2090518", "seconds": 98.1}
+{"label": "C262", "test": "multikey", "length": "256k", "depth": 90, "prompt_tokens": 250640, "found": true, "distractor_given": false, "key": "lantern-juniper", "number": 2964541, "answer": "2964541", "seconds": 97.9}
+{"label": "C512", "test": "needle", "length": "300k", "depth": 10, "prompt_tokens": 291455, "seconds": 117.1, "found": true, "word": "meadow-copper-504", "answer": "meadow-copper-504"}
+{"label": "C512", "test": "needle", "length": "300k", "depth": 50, "prompt_tokens": 291455, "seconds": 111.3, "found": true, "word": "falcon-quartz-940", "answer": "falcon-quartz-940"}
+{"label": "C512", "test": "needle", "length": "300k", "depth": 90, "prompt_tokens": 291456, "seconds": 113.3, "found": true, "word": "willow-cobalt-696", "answer": "willow-cobalt-696"}
+{"label": "C512", "test": "needle", "length": "400k", "depth": 10, "prompt_tokens": 391967, "seconds": 156.5, "found": true, "word": "falcon-saffron-138", "answer": "falcon-saffron-138"}
+{"label": "C512", "test": "needle", "length": "400k", "depth": 50, "prompt_tokens": 391965, "seconds": 158.6, "found": true, "word": "quartz-tundra-528", "answer": "quartz-tundra-528"}
+{"label": "C512", "test": "needle", "length": "400k", "depth": 90, "prompt_tokens": 391965, "seconds": 158.4, "found": true, "word": "quartz-glacier-192", "answer": "quartz-glacier-192"}
+{"label": "C512", "test": "needle", "length": "500k", "depth": 10, "prompt_tokens": 494705, "seconds": 209.0, "found": true, "word": "tundra-falcon-946", "answer": "tundra-falcon-946"}
+{"label": "C512", "test": "needle", "length": "500k", "depth": 50, "prompt_tokens": 494705, "seconds": 208.7, "found": true, "word": "willow-glacier-745", "answer": "willow-glacier-745"}
+{"label": "C512", "test": "needle", "length": "500k", "depth": 90, "prompt_tokens": 494706, "seconds": 209.1, "found": true, "word": "falcon-juniper-150", "answer": "falcon-juniper-150"}
+{"label": "C512", "test": "multikey", "length": "400k", "depth": 50, "prompt_tokens": 392039, "found": true, "distractor_given": false, "key": "meadow-copper", "number": 7135241, "answer": "7135241", "seconds": 157.6}
+{"label": "C512", "test": "multikey", "length": "500k", "depth": 50, "prompt_tokens": 494778, "found": true, "distractor_given": false, "key": "falcon-quartz", "number": 8122250, "answer": "8122250", "seconds": 210.2}
+{"label": "C1M", "test": "needle", "length": "1000k", "depth": 10, "prompt_tokens": 1014818, "seconds": 546.2, "found": true, "word": "meadow-copper-504", "answer": "meadow-copper-504", "streamed": true}
+{"label": "C1M", "test": "needle", "length": "1000k", "depth": 50, "prompt_tokens": 1014818, "seconds": 539.8, "found": true, "word": "falcon-quartz-940", "answer": "falcon-quartz-940", "streamed": true}
+{"label": "C1M", "test": "needle", "length": "1000k", "depth": 90, "prompt_tokens": 1014819, "seconds": 538.4, "found": true, "word": "willow-cobalt-696", "answer": "willow-cobalt-696", "streamed": true}
+{"label": "C1M", "test": "needle", "length": "600k", "depth": 50, "prompt_tokens": 606742, "seconds": 277.2, "found": true, "word": "meadow-copper-504", "answer": "meadow-copper-504", "streamed": true}
+{"label": "C1M", "test": "needle", "length": "800k", "depth": 50, "prompt_tokens": 820834, "seconds": 407.0, "found": true, "word": "falcon-quartz-940", "answer": "falcon-quartz-940", "streamed": true}
+{"label": "C1M", "test": "multikey", "length": "1000k", "depth": 50, "prompt_tokens": 1014891, "found": true, "distractor_given": false, "key": "meadow-copper", "number": 7135241, "answer": "7135241", "seconds": 536.9}
