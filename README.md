@@ -60,7 +60,7 @@ python3 -m venv ../hfvenv && ../hfvenv/bin/pip install -U huggingface_hub && ../
 
 .venv/bin/python tools/iq_pack.py --compat-bf16 --experts-bin --out packs/orca-iq4xs \
   --gguf /opt/strata/models/orca-iq4xs/Qwen3.8-Flash-Next-Uncensored-IQ4_XS-00001-of-00003.gguf
-.venv/bin/python tools/mtp_fetch.py fetch --out mtp                  # the draft head
+.venv/bin/python tools/mtp_fetch.py fetch --out mtp                  # the MTP head
 .venv/bin/python tools/mtp_pack.py --src mtp --experts q2_0 --out mtp/mtp-q2_0.gguf
 .venv/bin/python tools/mtp_rt.py --gguf mtp/mtp-q2_0.gguf --out mtp/rt && cp data/draft_vocab.bin mtp/rt/
 
