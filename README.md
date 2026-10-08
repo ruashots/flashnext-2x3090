@@ -44,18 +44,31 @@ From the [benchmark run](BENCHMARKS.md) on October 7:
 
 The configs are in [`setups/2026-10-strata-v0.1.40.2/`](setups/2026-10-strata-v0.1.40.2/).
 
-**Run the benchmark on your own setup.** With the server running, from a clone of this repo:
+**Run the same setup.** You need two 24 GB NVIDIA cards, about 64 GB of RAM, about 175 GB of disk, the CUDA 13.0 toolkit at `/usr/local/cuda`, `git`, `build-essential` and `python3-venv`. The model is gated: accept its terms on [Hugging Face](https://huggingface.co/orcarouter/Qwen3.8-Flash-Next-Uncensored-GGUF) first. As root:
 
 ```bash
-git clone --branch v0.1.40.2 https://github.com/Niko1221/Strata.git strata-haystack   # the needle tests build their text from it
-U=http://127.0.0.1:8080; M=Qwen3.8-Flash-Next-OrcaRouter
-python3 scripts/bench.py --url $U/v1 --model $M --label mine --out mine-speed.jsonl --contexts 0,4000,32000,128000
-python3 strata-haystack/tools/needle_bench.py --url $U --lengths 32k,128k,256k --depths 10,50,90
-python3 scripts/needle_multikey.py --strata strata-haystack --url $U --lengths 32k,128k,256k --label mine --out mine-needle.jsonl
-python3 scripts/gsm8k.py --url $U/v1 --model $M --label mine --out mine-gsm8k.jsonl --workers 2
+mkdir -p /opt/strata && cd /opt/strata
+git clone https://github.com/Niko1221/Strata.git && git clone https://github.com/ruashots/flashnext-2x3090.git
+S=/opt/strata/flashnext-2x3090/setups/2026-10-strata-v0.1.40.2
+cd Strata && git checkout v0.1.40.2
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+.venv/bin/python $S/build_strata_engine.py .                      # engine + image encoder, 10-20 min
+
+python3 -m venv ../hfvenv && ../hfvenv/bin/pip install -U huggingface_hub && ../hfvenv/bin/hf auth login
+../hfvenv/bin/hf download orcarouter/Qwen3.8-Flash-Next-Uncensored-GGUF \
+  --include "*IQ4_XS*" --include "mmproj-*F16.gguf" --local-dir /opt/strata/models/orca-iq4xs   # ~98 GB
+
+.venv/bin/python tools/iq_pack.py --compat-bf16 --experts-bin --out packs/orca-iq4xs \
+  --gguf /opt/strata/models/orca-iq4xs/Qwen3.8-Flash-Next-Uncensored-IQ4_XS-00001-of-00003.gguf
+.venv/bin/python tools/mtp_fetch.py fetch --out mtp                  # the draft head
+.venv/bin/python tools/mtp_pack.py --src mtp --experts q2_0 --out mtp/mtp-q2_0.gguf
+.venv/bin/python tools/mtp_rt.py --gguf mtp/mtp-q2_0.gguf --out mtp/rt && cp data/draft_vocab.bin mtp/rt/
+
+cp $S/strata-orca-0402-*.json . && cp $S/strata-server.service /etc/systemd/system/
+systemctl daemon-reload && systemctl enable --now strata-server     # starts the 262K setup
 ```
 
-Only Python 3 is needed, no packages. The speed run takes a while, the needles longer, and GSM8K downloads its test set on first use and runs all 1,319 problems (`--limit 250` for a quick look). `scripts/canonical_262k.sh` runs my whole set in one go, and [BENCHMARKS.md](BENCHMARKS.md#run-it-yourself) has the full method and the long-context runs.
+That starts the 262K setup on `http://127.0.0.1:8080` (OpenAI-compatible at `/v1`) in about a minute. For 512K or 1M, change `--config` in the service file to `strata-orca-0402-512k.json` or `strata-orca-0402-1m.json` and restart it. Every step explained is in the [setup folder](setups/2026-10-strata-v0.1.40.2/), and the benchmark commands are in [BENCHMARKS.md](BENCHMARKS.md#run-it-yourself).
 
 ## How we got here
 
