@@ -23,7 +23,7 @@ Before the tables, what these numbers can and can't tell you:
 
 One request at a time. Prompt reading and writing in tokens per second, as the client sees them. Up to 128K it's the median of 6 runs (3 code, 3 reasoning), past that a single run.
 
-| Setup | Prompt | Reads the prompt | Writes |
+| Setup | Prompt (tokens) | Reads the prompt (tok/s) | Writes (tok/s) |
 | --- | ---: | ---: | ---: |
 | 262K | 139 | - | 110 |
 | 262K | 4,222 | 989 | 112 |
@@ -50,7 +50,7 @@ Reading a full 1M prompt takes about 9 minutes. Reading 250K takes about a minut
 
 The 262K setup, two requests sent at the same moment, 600 tokens each. Median of 3 runs, the 32K line is one run.
 
-| Prompt each | First token, request 1 / 2 | Each writes | Both together |
+| Prompt each (tokens) | First token, request 1 / 2 | Each writes | Both together |
 | ---: | ---: | ---: | ---: |
 | ~130 | 1.9 s / 1.0 s | 58 tok/s | 102 tok/s |
 | ~4.2K | 7.0 s / 3.6 s | 56 tok/s | 74 tok/s |
